@@ -62,7 +62,6 @@ export class SciCatDataSource implements DataSource<any> {
   }
 
   loadAllData(
-    globalFilter?: string,
     filterExpressions?: any,
     sortField?: string,
     sortDirection = "asc",
@@ -72,7 +71,7 @@ export class SciCatDataSource implements DataSource<any> {
     this.loadingSubject.next(true);
 
     this.scicatdataService
-      .getCount(this.url, this.columnsdef, globalFilter, filterExpressions)
+      .getCount(this.url, this.columnsdef, filterExpressions)
       .subscribe((numData) =>
         numData[0] && numData[0].all[0]
           ? this.countSubject.next(numData[0].all[0].totalSets)
@@ -83,7 +82,6 @@ export class SciCatDataSource implements DataSource<any> {
       .findAllData(
         this.url,
         this.columnsdef,
-        globalFilter,
         filterExpressions,
         sortField,
         sortDirection,
@@ -106,14 +104,13 @@ export class SciCatDataSource implements DataSource<any> {
   }
 
   loadExportData(
-    globalFilter?: string,
     filterExpressions?: any,
     sortField?: string,
     sortDirection = "asc"
   ) {
     this.loadingSubject.next(true);
     this.scicatdataService
-      .getCount(this.url, this.columnsdef, globalFilter, filterExpressions)
+      .getCount(this.url, this.columnsdef, filterExpressions)
       .subscribe((numData) => {
         // send result
         const count =
@@ -122,7 +119,6 @@ export class SciCatDataSource implements DataSource<any> {
           .findAllData(
             this.url,
             this.columnsdef,
-            globalFilter,
             filterExpressions,
             sortField,
             sortDirection,

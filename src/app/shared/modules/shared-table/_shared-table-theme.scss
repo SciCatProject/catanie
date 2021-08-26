@@ -14,11 +14,8 @@
   }
 
   mat-table {
-    mat-header-row {
-      background-color: mat.get-color-from-palette(
-        $primary,
-        "default"
-      ) !important;
+    .first-header-row {
+      background-color: mat.get-color-from-palette($primary, "default");
     }
 
     mat-header-cell {
@@ -31,20 +28,21 @@
       }
     }
 
-    .btnToggleExpand.active:before {
-      background-color: red;
-    }
-
-    .btnToggleExpand:before {
-      color: white;
-      border-color: white;
-      background-color: green;
-    }
 
     mat-row:hover {
       background-color: mat.get-color-from-palette($hover, "lighter");
     }
+
+    .mat-form-field-appearance-outline {
+      .mat-form-field-outline {
+      background: mat.get-color-from-palette($primary, "default-contrast");
+      }
+      .mat-form-field-outline-thick {
+        color: mat.get-color-from-palette($primary, "default");;
+      }
+    }
   }
+
 }
 
 @mixin theme($theme) {

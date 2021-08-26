@@ -26,13 +26,14 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ObjKeysPipe } from "shared/pipes/obj-keys.pipe";
 import { RouterModule } from "@angular/router";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { LuxonDateAdapter, MAT_LUXON_DATE_FORMATS } from "ngx-material-luxon";
+import { MatMenuModule } from "@angular/material/menu";
 export interface Column {
   id: string;
   type?: string;
@@ -60,6 +61,7 @@ export interface Column {
     MatSortModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    ReactiveFormsModule,
     PipesModule,
     MatToolbarModule,
     MatFormFieldModule,
@@ -68,7 +70,8 @@ export interface Column {
     FlexLayoutModule,
     FormsModule,
     RouterModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatMenuModule
   ],
   exports: [SharedTableComponent],
   providers: [

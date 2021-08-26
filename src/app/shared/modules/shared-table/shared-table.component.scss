@@ -1,3 +1,76 @@
+.m8 {
+  margin: 8px;
+}
+.padding-right-1em{
+  padding-right: 1em;
+}
+::ng-deep .table-toolbar{
+  .mat-paginator-range-label{
+    // Hide range label on small screen
+    @media only screen and (max-width: 1279px) {
+      display: none;
+    }
+  }
+  mat-form-field{
+    flex-grow: 1;
+  }
+}
+
+.over-flow-scroll{
+  overflow-x: scroll;
+}
+
+::ng-deep .table-toolbar mat-form-field.mat-form-field-appearance-standard .mat-form-field-flex {
+  padding-top:0;
+}
+
+// Align search icon with placeholder
+::ng-deep .table-toolbar mat-form-field .mat-form-field-prefix, .mat-form-field-suffix {
+  align-self: flex-end;
+}
+
+.expanded {
+  height: min-content !important;
+  visibility: visible !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.btnToggleExpand {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.btnToggleExpand.active:before {
+  content: '-';
+  background-color: red;
+}
+
+.btnToggleExpand:before {
+  top: 9px;
+  left: 4px;
+  height: 14px;
+  width: 14px;
+  display: block;
+  position: absolute;
+  color: white;
+  border: 2px solid white;
+  border-radius: 14px;
+  box-shadow: 0 0 3px #444;
+  box-sizing: content-box;
+  text-align: center;
+  text-indent: 0 !important;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 14px;
+  content: '+';
+  background-color: green;
+}
+
 .center {
   position: absolute;
   top: 50%;
@@ -7,130 +80,46 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-.shared-table-title {
+mat-cell>span.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+div.shared-table-title {
   text-align: center;
   font-weight: 500;
   font-size: 20px;
 }
 
-.table-toolbar {
-  margin-top: 2em;
-  display: flex;
-  flex-direction: row;
-
-  mat-form-field {
-    flex: 1 1 80%;
-  }
-
-  .mat-focus-indicator {
-    flex: 0 0 auto;
-  }
-
-  mat-paginator {
-    flex: 0 0 auto;
-    min-width: 450px;
-  }
+.trigger-column{
+  max-width: 36px;
 }
 
-mat-table {
-  mat-header-row {
-    align-items: initial;
-
-    mat-header-cell {
-      mat-form-field {
-        min-width: 90%;
-        max-width: 95%;
-        margin: 1em 0 0.5em 0;
-        padding: 0.5em;
-
-        .mat-form-field-wrapper {
-          padding-bottom: 0;
-          .mat-form-field-flex {
-            padding-top: 0;
-          }
-        }
-
-        .mat-form-field-underline {
-          bottom: 0;
-        }
-      }
-
-      .btnToggleExpand {
-        position: relative;
-        display: inline-block;
-        width: 35px;
-        height: 35px;
-        cursor: pointer;
-      }
-
-      .btnToggleExpand.active:before {
-        content: "-";
-      }
-
-      .btnToggleExpand:before {
-        top: 9px;
-        left: 4px;
-        height: 14px;
-        width: 14px;
-        display: block;
-        position: absolute;
-        border: 2px solid;
-        border-radius: 14px;
-        box-shadow: 0 0 3px #444;
-        box-sizing: content-box;
-        text-align: center;
-        text-indent: 0 !important;
-        font-family: "Courier New", Courier, monospace;
-        line-height: 14px;
-        content: "+";
-      }
+//Styling for filter columns and row
+::ng-deep .mat-table {
+  mat-header-cell, mat-cell{
+    padding-right: 1em;
+  }
+  mat-form-field{
+    width:100%;
+  }
+  .mat-cell{
+    word-break: break-word;
+  }
+  .mat-form-field-appearance-outline {
+    .mat-form-field-wrapper {
+      margin: 0.25em 0;
     }
-
-    .shared-table-between {
-      mat-form-field {
-        .mat-form-field-wrapper {
-          .mat-form-field-infix {
-            border-top: 0;
-            padding: 0;
-
-            .date-container {
-              max-height: 35.125px;
-              mat-date-range-input {
-                min-width: 79%;
-                max-width: 85%;
-                display: inline-block;
-              }
-            }
-          }
-        }
-      }
+    .mat-form-field-infix {
+      padding: 0.5em 0 0.5em 0;
     }
   }
-
-  mat-row:hover {
-    cursor: pointer;
+  .mat-form-field-wrapper {
+    padding-bottom: 0em;
   }
-
-  .expanded {
-    height: min-content !important;
-    visibility: visible !important;
-  }
-
-  .hidColLength-0 {
-    height: 0px !important;
-    min-height: 0px !important;
-    visibility: hidden !important;
-  }
-
-  .matCell {
-    .m8 {
-      margin: 8px;
-    }
-  }
-
-  mat-cell > span.ellipsis {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  // Align Start date and End date
+  .mat-date-range-input-container{
+    align-items: inherit;
   }
 }

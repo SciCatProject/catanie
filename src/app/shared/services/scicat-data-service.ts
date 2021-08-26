@@ -37,10 +37,10 @@ export class ScicatDataService {
         if (filterExpressions[key] !== "") {
           columnkey = key;
           if (key.endsWith(".start")) {
-            columnkey = key.slice(0, -6);
+            columnkey = key.replace(".start", "");
           }
           if (key.endsWith(".end")) {
-            columnkey = key.slice(0, -4);
+            columnkey = key.replace(".end", "");
           }
           const column = columns.find((c) => c.id === columnkey);
           // All non-column conditions are ignored here
@@ -88,6 +88,9 @@ export class ScicatDataService {
               }
             }
           }
+          if (columnkey === "globalSearch"){
+            result["text"] = filterExpressions["globalSearch"];
+          }
         }
       });
     }
@@ -109,7 +112,6 @@ export class ScicatDataService {
   findAllData(
     url: string,
     columns: Column[],
-    globalFilter = "",
     filterExpressions = {},
     sortField?: string,
     sortOrder = "asc",
@@ -132,13 +134,7 @@ export class ScicatDataService {
     // limits	{"skip":0,"limit":50,"order":"creationTime:desc"}
 
     // ("findalldata:", filterExpressions)
-    const mongoExpression = this.createColumnFilterMongoExpression(columns, filterExpressions);
-    const filterFields = { ...mongoExpression };
-
-    if (globalFilter !== "") {
-      filterFields["text"] = globalFilter;
-    }
-
+    const filterFields = this.createColumnFilterMongoExpression(columns, filterExpressions);
     const limits: FilterLimits = { limit: pageSize, skip: pageSize * pageNumber };
     if (sortField) {
       limits["order"] = sortField + ":" + sortOrder;
@@ -157,16 +153,10 @@ export class ScicatDataService {
   getCount(
     url: string,
     columns: Column[],
-    globalFilter?: string,
     filterExpressions?: any
   ): Observable<any> {
 
-    const mongoExpression = this.createColumnFilterMongoExpression(columns, filterExpressions);
-    const filterFields = { ...mongoExpression };
-
-    if (globalFilter !== "") {
-      filterFields["text"] = globalFilter;
-    }
+    const filterFields = this.createColumnFilterMongoExpression(columns, filterExpressions);
     const params = new HttpParams()
       .set("fields", JSON.stringify(filterFields))
       .set("facets", JSON.stringify([]))
