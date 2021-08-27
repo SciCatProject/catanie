@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
 import {
   CanDeactivate,
 } from "@angular/router";
@@ -22,7 +21,7 @@ export class LeavingPageGuard implements CanDeactivate<EditableComponent> {
   /**
    * Needs to return either a boolean or an observable that maps to a boolean
    */
-  constructor(private dialog: MatDialog){}
+  constructor(){}
   canDeactivate(component: EditableComponent): Observable<boolean> | boolean {
     return component.hasUnsavedChanges()?
       confirm("You have unsaved changes. Press Cancel to go back and save these changes, or OK to leave without saving")

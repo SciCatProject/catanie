@@ -65,10 +65,9 @@ export class AppComponent implements OnDestroy, OnInit, AfterViewChecked {
    * @memberof AppComponent
    */
   ngOnInit() {
-    this.store.dispatch(fetchCurrentUserAction());
     LoopBackConfig.setBaseURL(this.appConfig.lbBaseURL);
     console.log(LoopBackConfig.getPath());
-
+    this.store.dispatch(fetchCurrentUserAction());
     if (window.location.pathname.indexOf("logout") !== -1) {
       this.logout();
     }

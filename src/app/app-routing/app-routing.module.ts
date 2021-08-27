@@ -1,55 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { DashboardComponent } from "../datasets/dashboard/dashboard.component";
-import { DatafilesComponent } from "../datasets/datafiles/datafiles.component";
-import { DatablocksComponent } from "../datasets/datablocks-table/datablocks-table.component";
-import { DatasetDetailsDashboardComponent } from "datasets/dataset-details-dashboard/dataset-details-dashboard.component";
-
-import { JobsDashboardComponent } from "jobs/jobs-dashboard/jobs-dashboard.component";
-import { JobsDashboardNewComponent } from "jobs/jobs-dashboard-new/jobs-dashboard-new.component";
-
-import { JobsDetailComponent } from "../jobs/jobs-detail/jobs-detail.component";
-
 import { ErrorPageComponent } from "shared/modules/error-page/error-page.component";
-
-import { LoginComponent } from "../users/login/login.component";
-import { UserSettingsComponent } from "../users/user-settings/user-settings.component";
-
-import { ViewProposalPageComponent } from "../proposals/view-proposal-page/view-proposal-page.component";
-
-import { PublishComponent } from "datasets/publish/publish.component";
-import { AuthGuard } from "./auth.guard";
-import { BatchViewComponent } from "datasets/batch-view/batch-view.component";
-import { SampleDetailComponent } from "../samples/sample-detail/sample-detail.component";
-
-import { LogbooksDashboardComponent } from "../logbooks/logbooks-dashboard/logbooks-dashboard.component";
-import { LogbooksTableComponent } from "../logbooks/logbooks-table/logbooks-table.component";
-import { AboutComponent } from "about/about/about.component";
-import { HelpComponent } from "help/help/help.component";
-import { PublisheddataDashboardComponent } from "publisheddata/publisheddata-dashboard/publisheddata-dashboard.component";
-import { PublisheddataDetailsComponent } from "publisheddata/publisheddata-details/publisheddata-details.component";
-import { PublisheddataEditComponent } from "publisheddata/publisheddata-edit/publisheddata-edit.component";
-
-// handles external URLs by lookup in the env config
-import { RedirectGuard } from "app-routing/redirect.guard";
-import { ProposalDashboardComponent } from "proposals/proposal-dashboard/proposal-dashboard.component";
-import { SampleDashboardComponent } from "samples/sample-dashboard/sample-dashboard.component";
 import { LoginLayoutComponent } from "_layout/login-layout/login-layout.component";
 import { AppLayoutComponent } from "_layout/app-layout/app-layout.component";
-import { PoliciesDashboardComponent } from "policies/policies-dashboard/policies-dashboard.component";
-import { InstrumentsDashboardComponent } from "instruments/instruments-dashboard/instruments-dashboard.component";
-import { InstrumentDetailsComponent } from "instruments/instrument-details/instrument-details.component";
-import { AnonymousDashboardComponent } from "datasets/anonymous-dashboard/anonymous-dashboard.component";
-import { AnonymousDetailsDashboardComponent } from "datasets/anonymous-details-dashboard/anonymous-details-dashboard.component";
 import { AnonymousLayoutComponent } from "_layout/anonymous-layout/anonymous-layout.component";
-import { JobsGuard } from "app-routing/jobs.guard";
-import { PoliciesGuard } from "app-routing/policies.guard";
-import { LogbookGuard } from "app-routing/logbook.guard";
-import { FilesDashboardComponent } from "files/files-dashboard/files-dashboard.component";
-import { DatasetsGuard } from "./datasets.guard";
-import { LeavingPageGuard } from "./pending-changes.guard";
-import { ProposalDashboardNewComponent } from "proposals/proposal-dashboard-new/proposal-dashboard-new.component";
 
 export const routes: Routes = [
   {
@@ -63,19 +18,15 @@ export const routes: Routes = [
       },
       {
         path: "anonymous/datasets",
-        component: AnonymousDashboardComponent,
-      },
-      {
-        path: "anonymous/datasets/:id",
-        component: AnonymousDetailsDashboardComponent,
+        loadChildren: () => import("./lazy/public-datasets-routing/public-datasets.feature.module").then( m => m.PublicDatasetsFeatureModule)
       },
       {
         path: "anonymous/about",
-        component: AboutComponent,
+        loadChildren: () => import("./lazy/about-routing/about.feature.module").then( m => m.AboutFeatureModule)
       },
       {
         path: "anonymous/help",
-        component: HelpComponent,
+        loadChildren: () => import("./lazy/help-routing/help.feature.module").then( m => m.HelpFeatureModule)
       },
     ],
   },
@@ -84,11 +35,9 @@ export const routes: Routes = [
     component: LoginLayoutComponent,
     children: [
       { path: "", redirectTo: "/login", pathMatch: "full" },
-      { path: "login", component: LoginComponent },
       {
-        path: "login/error",
-        component: ErrorPageComponent,
-        data: { errorTitle: "Location Not Found", breadcrumb: "Error" },
+        path: "login",
+        loadChildren: () => import("./lazy/login-routing/login.feature.module").then( m => m.LoginFeatureModule)
       },
     ],
   },
@@ -102,166 +51,54 @@ export const routes: Routes = [
         pathMatch: "full",
       },
       {
-        path: "datasets/batch/publish",
-        component: PublishComponent,
-        canActivate: [AuthGuard],
-      },
-      {
         path: "datasets",
-        component: DashboardComponent,
-        canActivate: [DatasetsGuard],
-      },
-      {
-        path: "datasets/batch",
-        component: BatchViewComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "datasets/:id",
-        component: DatasetDetailsDashboardComponent,
-        canActivate: [DatasetsGuard],
-        canDeactivate: [LeavingPageGuard]
-      },
-      {
-        path: "datasets/:id/datablocks",
-        component: DatablocksComponent,
-        canActivate: [DatasetsGuard],
-      },
-      {
-        path: "datasets/:id/datafiles",
-        component: DatafilesComponent,
-        canActivate: [DatasetsGuard],
+        loadChildren: () => import("./lazy/private-datasets-routing/private-datasets.feature.module").then( m  => m.PrivateDatasetsFeatureModule)
       },
       {
         path: "files",
-        component: FilesDashboardComponent,
-        canActivate: [AuthGuard],
+        loadChildren: () => import("./lazy/file-routing/file.feature.module").then( m => m.FileFeatureModule)
       },
       {
         path: "instruments",
-        component: InstrumentsDashboardComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "instruments/:id",
-        component: InstrumentDetailsComponent,
-        canActivate: [AuthGuard],
+        loadChildren: () => import("./lazy/instruments-routing/instruments.feature.module").then( m => m.InstrumentsFeatureModule)
       },
       {
         path: "proposals",
-        component: ProposalDashboardNewComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "proposalsold",
-        component: ProposalDashboardComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "proposals/:id",
-        component: ViewProposalPageComponent,
-        canActivate: [AuthGuard],
+        loadChildren: () => import("./lazy/proposal-routing/proposal.feature.module").then( m => m.ProposalFeatureModule)
       },
       {
         path: "publishedDatasets",
-        component: PublisheddataDashboardComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "publishedDatasets/:id/edit",
-        component: PublisheddataEditComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "publishedDatasets/:id",
-        component: PublisheddataDetailsComponent,
-        canActivate: [AuthGuard],
+        loadChildren: () => import("./lazy/publisheddata-routing/publisheddata.feature.module").then( m => m.PublisheddataFeatureModule)
       },
       {
         path: "samples",
-        component: SampleDashboardComponent,
-        canActivate: [AuthGuard],
+        loadChildren: () => import("./lazy/samples-routing/samples.feature.module").then( m => m.SamplesFeatureModule)
       },
-      {
-        path: "samples/:id",
-        component: SampleDetailComponent,
-        canActivate: [AuthGuard],
-      },
-
       {
         path: "policies",
-        component: PoliciesDashboardComponent,
-        canActivate: [AuthGuard, PoliciesGuard],
+        loadChildren: () => import("./lazy/policies-routing/policies.feature.module").then( m => m.PoliciesFeatureModule)
       },
 
       {
         path: "user",
-        component: UserSettingsComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "user/settings",
-        component: UserSettingsComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: "user/jobsold",
-        component: JobsDashboardComponent,
-        canActivate: [AuthGuard, JobsGuard],
-      },
-      {
-        path: "user/jobs",
-        component: JobsDashboardNewComponent,
-        canActivate: [AuthGuard, JobsGuard],
-      },
-      {
-        path: "user/jobs/:id",
-        component: JobsDetailComponent,
-        canActivate: [AuthGuard, JobsGuard],
+        loadChildren: () => import("./lazy/user-routing/user.feature.module").then( m => m.UsersFeatureModule)
       },
       {
         path: "about",
-        component: AboutComponent,
+        loadChildren: () => import("./lazy/about-routing/about.feature.module").then( m => m.AboutFeatureModule)
       },
       {
         path: "help",
-        component: HelpComponent,
+        loadChildren: () => import("./lazy/help-routing/help.feature.module").then( m => m.HelpFeatureModule)
       },
       {
         path: "logbooks",
-        component: LogbooksTableComponent,
-        canActivate: [AuthGuard, LogbookGuard],
-      },
-      {
-        path: "logbooks/:name",
-        component: LogbooksDashboardComponent,
-        canActivate: [AuthGuard, LogbookGuard],
+        loadChildren: () => import("./lazy/logbooks-routing/logbooks.feature.module").then( m => m.LogbooksFeatureModule)
       },
       {
         path: "error",
         component: ErrorPageComponent,
         data: { errorTitle: "Location Not Found"},
-      },
-      {
-        path: "help/ingestManual",
-        canActivate: [RedirectGuard],
-        component: RedirectGuard,
-        data: {
-          urlConfigItem: "ingestManual",
-        },
-      },
-      {
-        path: "help/SciCatGettingStartedSLSSummary",
-        canActivate: [RedirectGuard],
-        component: RedirectGuard,
-        data: {
-          urlConfigItem: "gettingStarted",
-        },
-      },
-      {
-        path: "logout",
-        component: LoginLayoutComponent,
-        canActivate: [AuthGuard],
       },
       {
         path: "404",

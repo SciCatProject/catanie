@@ -20,6 +20,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgxJsonViewerModule } from "ngx-json-viewer";
 import { SharedCatanieModule } from "shared/shared.module";
 import { MatChipsModule } from "@angular/material/chips";
+import { FileSizePipe } from "shared/pipes/filesize.pipe";
 
 @NgModule({
   imports: [
@@ -47,6 +48,8 @@ import { MatChipsModule } from "@angular/material/chips";
     SampleDialogComponent,
     SampleDashboardComponent,
   ],
-  providers: [],
+  providers: [
+    FileSizePipe
+  ],
 })
 export class SamplesModule {}
