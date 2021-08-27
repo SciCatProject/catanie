@@ -355,18 +355,6 @@
               "outputHashing": "all"
             },
             "als-dev": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "3.2mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -393,7 +381,16 @@
                   "output": "/"
                 }
               ],
-              "outputHashing": "all"
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": false,
+              "statsJson": false,
+              "progress": true,
+              "vendorChunk": true,
+              "buildOptimizer": false
             },
             "als-prod": {
               "budgets": [
@@ -418,13 +415,6 @@
                   "with": "src/environments/environment.als.prod.ts"
                 }
               ],
-              "optimization": false,
-              "sourceMap": true,
-              "namedChunks": false,
-              "aot": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
               "assets": [
                 "src/assets/",
                 "src/robots.txt",
@@ -650,6 +640,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "alsdev": {
+              "browserTarget": "catanie:build:als-dev"
+            },
             "dmscdev": {
               "browserTarget": "catanie:build:dmscdev"
             },
