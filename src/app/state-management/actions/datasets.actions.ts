@@ -177,7 +177,7 @@ export const setArchiveViewModeAction = createAction(
 );
 export const setPublicViewModeAction = createAction(
   "[Dataset] Set Public View Mode",
-  props<{ isPublished: boolean }>()
+  props<{ isPublished: boolean | ""}>()
 );
 
 export const prefillFiltersAction = createAction(

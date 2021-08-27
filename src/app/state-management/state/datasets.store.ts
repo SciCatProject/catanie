@@ -57,7 +57,7 @@ export const initialDatasetState: DatasetState = {
     sortField: "creationTime:desc",
     keywords: [],
     scientific: [],
-    isPublished: false
+    isPublished: ""
   },
 
   batch: [],

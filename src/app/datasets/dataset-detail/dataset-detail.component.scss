@@ -1,6 +1,11 @@
 mat-card {
   margin: 1em;
 
+  .mat-card-header {
+    padding: 0.25rem 0.5rem;
+    margin: -0.5rem -0.5rem 0 -0.5rem;
+  }
+
   .section-icon {
     height: auto !important;
     width: auto !important;
@@ -12,17 +17,17 @@ mat-card {
 
   table {
     th {
-      min-width: 10em;
-      padding-right: 0.5em;
+      min-width: 10rem;
+      padding-right: 0.5rem;
       text-align: left;
     }
 
     td {
       width: 100%;
-      padding: 0.5em;
+      padding: 0.5rem;
 
       .sample-edit {
-        padding-left: 0.5em;
+        padding-left: 0.5rem;
 
         mat-icon {
           font-size: medium;
@@ -44,7 +49,7 @@ mat-card {
       }
 
       .done-edit-button {
-        margin-left: 1em;
+        margin-left: 1rem;
       }
     }
   }

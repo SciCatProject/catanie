@@ -107,7 +107,7 @@ export interface DatasetFilters extends GenericFilters {
   keywords: string[];
   mode: Record<string, unknown>;
   scientific: ScientificCondition[];
-  isPublished: boolean;
+  isPublished: boolean | "";
 }
 
 export interface SampleFilters extends GenericFilters {

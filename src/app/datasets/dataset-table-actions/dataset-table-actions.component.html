@@ -2,13 +2,13 @@
   <mat-button-toggle-group
     class="public-toggle"
     [value]="currentPublicViewMode"
-    *ngIf="searchPublicDataEnabled"
+    (change)="onViewPublicChange($event.value)"
   >
-    <mat-button-toggle [value]="false" (click)="onViewPublicChange(false)">
+    <mat-button-toggle [value]="''">
       My Data
     </mat-button-toggle>
-    <mat-button-toggle [value]="true" (click)="onViewPublicChange(true)">
-      Public Data
+    <mat-button-toggle [value]="true">
+      All Public Data
     </mat-button-toggle>
   </mat-button-toggle-group>
   <mat-button-toggle-group

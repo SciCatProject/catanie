@@ -59,9 +59,6 @@ import { AddDatasetDialogComponent } from "./add-dataset-dialog/add-dataset-dial
 import { DatasetTableSettingsComponent } from "./dataset-table-settings/dataset-table-settings.component";
 import { DatasetTableActionsComponent } from "./dataset-table-actions/dataset-table-actions.component";
 import { DatasetLifecycleComponent } from "./dataset-lifecycle/dataset-lifecycle.component";
-import { AnonymousDashboardComponent } from "./anonymous-dashboard/anonymous-dashboard.component";
-import { AnonymousDetailsDashboardComponent } from "./anonymous-details-dashboard/anonymous-details-dashboard.component";
-import { AnonymousDetailsComponent } from "./anonymous-details/anonymous-details.component";
 import { SampleEditComponent } from "./sample-edit/sample-edit.component";
 import { LuxonDateAdapter, MAT_LUXON_DATE_FORMATS } from "ngx-material-luxon";
 import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -123,9 +120,6 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
     DatasetTableSettingsComponent,
     DatasetTableActionsComponent,
     DatasetLifecycleComponent,
-    AnonymousDashboardComponent,
-    AnonymousDetailsDashboardComponent,
-    AnonymousDetailsComponent,
     SampleEditComponent,
   ],
   providers: [

@@ -32,9 +32,10 @@
 
       <div style="clear: both;"></div>
 
-      <dataset-detail *ngIf="editingAllowed"
+      <dataset-detail
         [dataset]="dataset"
         [datasetWithout]="(datasetWithout$ | async) ?? null"
+        [editingAllowed]="editingAllowed"
         [attachments]="attachments$ | async"
         [proposal]="(proposal$ | async) ?? null"
         [sample]="(sample$ | async) ?? null"
@@ -48,14 +49,6 @@
         (saveMetadata)="onSaveMetadata($event)"
         (hasUnsavedChanges)="onHasUnsavedChanges($event)"
       ></dataset-detail>
-      <!-- Viewing public dataset while in read only mode  -->
-      <anonymous-details *ngIf="!editingAllowed"
-        [dataset]="dataset"
-        [proposal]="proposal$ | async"
-        [sample]="sample$ | async"
-        [attachments]="attachments$ | async"
-        (clickKeyword)="onClickKeyword($event)"
-      ></anonymous-details>
     </mat-tab>
 
     <mat-tab>
@@ -75,28 +68,30 @@
       </div>
     </mat-tab>
 
-    <mat-tab *ngIf="appConfig.datasetReduceEnabled">
-      <ng-template mat-tab-label>
-        <mat-icon> tune </mat-icon> Reduce
-      </ng-template>
-      <reduce [dataset]="dataset"></reduce>
-    </mat-tab>
+    <ng-template [ngIf]="this.loggedIn$ | async">
+      <mat-tab *ngIf="appConfig.datasetReduceEnabled">
+        <ng-template mat-tab-label>
+          <mat-icon> tune </mat-icon> Reduce
+        </ng-template>
+        <reduce [dataset]="dataset"></reduce>
+      </mat-tab>
 
-    <mat-tab *ngIf="attachments$ | async as attachments">
-      <ng-template mat-tab-label>
-        <mat-icon> insert_photo </mat-icon> Attachments
-      </ng-template>
+      <mat-tab *ngIf="attachments$ | async as attachments">
+        <ng-template mat-tab-label>
+          <mat-icon> insert_photo </mat-icon> Attachments
+        </ng-template>
 
-      <div class="file-uploader">
-        <app-file-uploader
-          [attachments]="attachments"
-          (filePicked)="onFileUploaderFilePicked($event)"
-          (readEnd)="onFileUploaderReadEnd($event)"
-          (submitCaption)="updateCaption($event)"
-          (deleteAttachment)="deleteAttachment($event)"
-        ></app-file-uploader>
-      </div>
-    </mat-tab>
+        <div class="file-uploader">
+          <app-file-uploader
+            [attachments]="attachments"
+            (filePicked)="onFileUploaderFilePicked($event)"
+            (readEnd)="onFileUploaderReadEnd($event)"
+            (submitCaption)="updateCaption($event)"
+            (deleteAttachment)="deleteAttachment($event)"
+          ></app-file-uploader>
+        </div>
+      </mat-tab>
+    </ng-template>
 
     <mat-tab *ngIf="appConfig.logbookEnabled">
       <ng-template mat-tab-label>

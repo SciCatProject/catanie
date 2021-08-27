@@ -1,53 +1,69 @@
-.login-container {
-  padding-top: 10em;
+.main-login {
+  height: 100%;
 
-  mat-card {
-    max-width: 300px;
-    background-color: rgba(255, 255, 255, 0.8);
+  background-image: url("../../../assets/images/site.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: calc(100vh - 3.5rem);
 
-    .facility-logo {
-      margin: 2em 0;
+  .login-container {
+    padding-top: 10em;
 
-      img {
-        max-width: 200px;
-      }
-    }
+    mat-card {
+      max-width: 300px;
+      background-color: rgba(255, 255, 255, 0.8);
 
-    mat-card-content {
-      mat-form-field {
-        width: 100%;
+      .facility-logo {
+        margin: 2em 0;
 
-        mat-icon {
-          vertical-align: middle;
+        img {
+          max-width: 200px;
         }
       }
 
-      .privacy-notice {
-        margin-top: 1em;
-      }
+      mat-card-content {
+        mat-form-field {
+          width: 100%;
 
-      .oauth-login-button {
-        height: 40px;
-        width: 200px;
-        margin-top: 1em;
-        cursor: pointer;
-        display:inline-block;
-       
-      }
+          mat-icon {
+            vertical-align: middle;
+          }
+        }
 
-      .oauth-login-image {
-        height: 24px;
-        width: 24px;
-        float: left;
-        padding: 6px;
-      }
-      mat-checkbox {
-        margin-left: 1em;
-      }
+        .privacy-notice {
+          margin-top: 1em;
+        }
 
-      
+        .login-button {
+          margin-top: 1em;
+        }
+
+        mat-checkbox {
+          margin-left: 1em;
+        }
+
+        .oauth-login-button {
+          height: 40px;
+          width: 200px;
+          margin-top: 1em;
+          cursor: pointer;
+          display: inline-block;
+
+        }
+
+        .oauth-login-image {
+          height: 24px;
+          width: 24px;
+          float: left;
+          padding: 6px;
+        }
+
+        mat-checkbox {
+          margin-left: 1em;
+        }
+      }
     }
+
   }
-
-
 }

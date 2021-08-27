@@ -137,7 +137,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -257,7 +257,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -752,7 +752,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -782,7 +782,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -877,7 +877,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countHistoryList(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -898,7 +898,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -993,7 +993,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countTechniquesList(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -1014,7 +1014,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1109,7 +1109,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countSamples(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -1130,7 +1130,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1225,7 +1225,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countDatablocks(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -1246,7 +1246,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1341,7 +1341,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countOrigdatablocks(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -1362,7 +1362,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {any} id DerivedDataset id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1457,7 +1457,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countAttachments(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -1536,13 +1536,13 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
   }
 
   /**
-   * Return facet counts relevant for the given selected subset of datasets. 
+   * Return facet counts relevant for the given selected subset of datasets.
    *
    * @param {object} fields Define the filter conditions by specifying the name and values of fields. There ia also support for a `text` search to look for strngs anywhere in the dataset.
    *
    * @param {any} facets Defines list of field names, for which facet counts should be calculated
    *
-   * @param {object} options 
+   * @param {object} options
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1573,7 +1573,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {object} limits Define further query parameters like skip, limit, order
    *
-   * @param {object} options 
+   * @param {object} options
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1631,7 +1631,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {object} data Request data.
    *
-   *  - `datasetId` – `{string}` - 
+   *  - `datasetId` – `{string}` -
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1650,37 +1650,6 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
     let _postBody: any = {};
     let _urlParams: any = {};
     if (typeof datasetId !== 'undefined' && datasetId !== null) _urlParams.datasetId = datasetId;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Return datasets fulfilling complex filter conditions, including from fields of joined models.
-   *
-   * @param {object} fields Define the filter conditions by specifying the name of values of fields requested. There ia also support for a `text` search to look for strings anywhere in the dataset. Skip and limit parameters allow for paging.
-   *
-   * @param {object} limits Define further query parameters like skip, limit, order
-   *
-   * @param {object} options 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `DerivedDataset` object.)
-   * </em>
-   */
-  public anonymousquery(fields: any = {}, limits: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DerivedDatasets/anonymousquery";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof fields !== 'undefined' && fields !== null) _urlParams.fields = fields;
-    if (typeof limits !== 'undefined' && limits !== null) _urlParams.limits = limits;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
@@ -1716,7 +1685,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {object} data Request data.
    *
-   *  - `id` – `{string}` - 
+   *  - `id` – `{string}` -
    *
    *  - `fieldName` – `{string}` - Name of field to append data to
    *
@@ -1753,7 +1722,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
    *
    * @param {object} limits Define further query parameters like skip, limit, order
    *
-   * @param {object} options 
+   * @param {object} options
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1782,7 +1751,7 @@ export class DerivedDatasetApi extends BaseLoopBackApi {
          * (The remote method definition does not provide any description.)
          * </em>
    *
-   * @param {string} id 
+   * @param {string} id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned

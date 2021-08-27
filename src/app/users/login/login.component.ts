@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit, Inject } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
-import { fetchUserAction, loginAction, loginOIDCAction } from "state-management/actions/user.actions";
+import { fetchCurrentUserAction, fetchUserAction, loginAction, loginOIDCAction } from "state-management/actions/user.actions";
 import { Subscription } from "rxjs";
 import { filter } from "rxjs/operators";
 import {
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     @Inject(APP_CONFIG) public appConfig: AppConfig,
     @Inject(DOCUMENT) public document: Document
   ) {
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "";
   }
 
   redirectOIDC(authURL: string) {
@@ -84,8 +84,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.proceedSubscription = this.hasUser$.subscribe(() => {
+      this.store.dispatch(fetchCurrentUserAction());
       console.log(this.returnUrl);
-      this.router.navigateByUrl("/datasets");
+      this.router.navigateByUrl(this.returnUrl || "/datasets");
     });
 
     this.route.queryParams.subscribe(params => {

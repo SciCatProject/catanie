@@ -3,9 +3,6 @@
 @use '~@angular/material' as mat;
 @use "./app/app-theme" as app;
 @use "./app/_layout/app-header/app-header-theme" as app-header;
-@use "./app/_layout/login-header/login-header-theme" as login-header;
-@use "./app/datasets/anonymous-details/anonymous-details-theme" as anonymous-details;
-@use "./app/datasets/anonymous-details-dashboard/anonymous-details-dashboard-theme" as anonymous-details-dashboard;
 @use "./app/datasets/batch-view/batch-view-theme" as batch-view;
 @use "./app/datasets/dashboard/dashboard-theme" as dashboard;
 @use "./app/datasets/datafiles/datafiles-theme" as datafiles;
@@ -255,9 +252,6 @@ $theme: custom-light-theme(
 @include mat.all-component-themes($theme);
 @include app.theme($theme);
 @include app-header.theme($theme);
-@include login-header.theme($theme);
-@include anonymous-details.theme($theme);
-@include anonymous-details-dashboard.theme($theme);
 @include batch-view.theme($theme);
 @include dashboard.theme($theme);
 @include datafiles.theme($theme);

@@ -9,7 +9,9 @@ import { Subscription } from "rxjs";
 import {
   getCurrentUserAccountType,
   getCurrentUser,
-  getProfile
+  getProfile,
+  getIsLoggedIn,
+  getCurrentUserName
 } from "state-management/selectors/user.selectors";
 import { getDatasetsInBatch } from "state-management/selectors/datasets.selectors";
 
@@ -29,6 +31,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   inBatchPids: string[] = [];
   inBatchCount = 0;
   inBatchIndicator = "";
+  loggedIn$ = this.store.pipe(select(getIsLoggedIn));
 
   constructor(
     private store: Store<any>,
@@ -75,6 +78,9 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
         if (current) {
           this.username = current.username.replace("ms-ad.", "");
           if (!current.realm && current.id) {
+            this.store.pipe(select(getCurrentUserName)).subscribe(profile => {
+              console.log("TEST");
+            });
             this.store.pipe(select(getProfile)).subscribe(profile => {
               if (profile) {
                 this.username = profile.username;

@@ -30,6 +30,7 @@ import {
   getCurrentUser,
   getProfile,
   getIsLoading,
+  getIsLoggedIn,
 } from "state-management/selectors/user.selectors";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription, Observable, fromEvent, combineLatest } from "rxjs";
@@ -90,6 +91,7 @@ export class DatasetDetailsDashboardComponent
     map((profile) => (profile ? profile.accessGroups : []))
   );
   loading$ = this.store.pipe(select(getIsLoading));
+  loggedIn$ = this.store.pipe(select(getIsLoggedIn));
   jwt$: Observable<JWT> = new Observable<JWT>();
   dataset: Dataset | undefined;
   user: User | undefined;
@@ -113,24 +115,26 @@ export class DatasetDetailsDashboardComponent
   }
 
   isPI(): boolean {
-    if (this.user.username === "admin") {
-      return true;
-    }
-    if (this.dataset.type === "raw") {
-      return (
-        this.user.email.toLowerCase() ===
-        ((this.dataset as unknown) as RawDataset)[
-          "principalInvestigator"
-        ].toLowerCase()
-      );
-    }
-    if (this.dataset.type === "derived") {
-      return (
-        this.user.email.toLowerCase() ===
-        ((this.dataset as unknown) as DerivedDataset)[
-          "investigator"
-        ].toLowerCase()
-      );
+    if (this.user) {
+      if (this.user.username === "admin") {
+        return true;
+      }
+      if (this.dataset.type === "raw") {
+        return (
+          this.user.email.toLowerCase() ===
+          ((this.dataset as unknown) as RawDataset)[
+            "principalInvestigator"
+            ].toLowerCase()
+        );
+      }
+      if (this.dataset.type === "derived") {
+        return (
+          this.user.email.toLowerCase() ===
+          ((this.dataset as unknown) as DerivedDataset)[
+            "investigator"
+            ].toLowerCase()
+        );
+      }
     }
     return false;
   }

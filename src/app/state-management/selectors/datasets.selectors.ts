@@ -56,14 +56,6 @@ export const getFilters = createSelector(
   (state: DatasetState) => state.filters
 );
 
-export const getAnonymousFilters = createSelector(
-  getDatasetState,
-  (state: DatasetState) => {
-    const { isPublished, ...filters } = state.filters;
-    return filters;
-  }
-);
-
 export const getTextFilter = createSelector(
   getFilters,
   (filters) => filters.text || ""
@@ -173,7 +165,6 @@ export const getFullqueryParams = createSelector(getFilters, (filter) => {
     limit,
     sortField,
     modeToggle,
-    isPublished,
     ...theRest
   } = filter;
   const limits = { skip, limit, order: sortField };
@@ -187,7 +178,6 @@ export const getFullfacetParams = createSelector(getFilters, (filter) => {
     limit,
     sortField,
     modeToggle,
-    isPublished,
     ...theRest
   } = filter;
   const fields = restrictFilter(theRest);

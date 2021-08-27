@@ -21,7 +21,7 @@ export class DatasetsGuard implements CanActivate {
       .getCurrent()
       .toPromise()
       .catch(() => {
-        this.router.navigateByUrl("/anonymous" + state.url);
+        this.router.navigateByUrl("" + state.url);
         return false;
       })
       .then(() => true);

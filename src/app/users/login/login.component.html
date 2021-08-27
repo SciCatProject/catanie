@@ -1,12 +1,13 @@
-<div class="login-container" fxLayoutAlign="center center">
-  <mat-card>
-    <div fxLayout="row" class="facility-logo">
-      <div fxFlex="auto"></div>
-      <div fxFlex="200px">
-        <img src="assets/images/site-logo.png" />
+<div class="main-login">
+  <div class="login-container" fxLayoutAlign="center center">
+    <mat-card>
+      <div fxLayout="row" class="facility-logo">
+        <div fxFlex="auto"></div>
+        <div fxFlex="200px">
+          <img src="assets/images/site-logo.png" />
+        </div>
+        <div fxFlex="auto"></div>
       </div>
-      <div fxFlex="auto"></div>
-    </div>
     <mat-card-content>
       <div *ngFor="let endpoint of appConfig.oAuth2Endpoints">
         <button
@@ -19,9 +20,9 @@
           <img class="oauth-login-image" *ngIf="endpoint.displayImage" [src]="endpoint.displayImage">
           Login with {{endpoint.displayText}}
 
-        </button> 
+        </button>
         <br/>
-    
+
 
       </div>
       <br/>
@@ -32,42 +33,43 @@
           <input matInput id="usernameInput" formControlName="username" />
         </mat-form-field>
 
-        <mat-form-field hintLabel="{{appConfig.facility}} account password">
-          <mat-label> <b> Password</b> </mat-label>
-          <span matPrefix> <mat-icon>vpn_key</mat-icon> &nbsp; </span>
-          <input
-            matInput
-            id="passwordInput"
-            formControlName="password"
-            [type]="hide ? 'password' : 'text'"
-          />
+          <mat-form-field hintLabel="{{appConfig.facility}} account password">
+            <mat-label> <b> Password</b> </mat-label>
+            <span matPrefix> <mat-icon>vpn_key</mat-icon> &nbsp; </span>
+            <input
+              matInput
+              id="passwordInput"
+              formControlName="password"
+              [type]="hide ? 'password' : 'text'"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <p class="privacy-notice" *ngIf="appConfig.facility === 'ESS'">
+            <small>
+              <a (click)="openPrivacyDialog()">SciCat Privacy Notice</a>
+            </small>
+          </p>
           <button
-            mat-icon-button
-            matSuffix
-            type="button"
-            (click)="hide = !hide"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide"
+            mat-raised-button
+            class="login-button"
+            type="submit"
+            color="primary"
+            [ngClass]="{ loading: loading$ | async }"
           >
-            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            Log in
           </button>
-        </mat-form-field>
-        <p class="privacy-notice" *ngIf="appConfig.facility === 'ESS'">
-          <small>
-            <a (click)="openPrivacyDialog()">SciCat Privacy Notice</a>
-          </small>
-        </p>
-        <button
-          mat-raised-button
-          class="login-button"
-          type="submit"
-          color="primary"
-          [ngClass]="{ loading: loading$ | async }"
-        >
-          Log in
-        </button>
-        <mat-checkbox name="rememberMe">Remember me</mat-checkbox>
-      </form>
-    </mat-card-content>
-  </mat-card>
+          <mat-checkbox name="rememberMe">Remember me</mat-checkbox>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

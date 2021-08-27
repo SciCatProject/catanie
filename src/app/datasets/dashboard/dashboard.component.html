@@ -1,27 +1,31 @@
+<breadcrumb></breadcrumb>
 <mat-sidenav-container [hasBackdrop]="false">
   <mat-sidenav-content>
     <div fxLayout="row" fxLayout.xs="column">
       <div class="action-column" fxFlex="14" fxFlex.lt-xl="20">
         <datasets-filter></datasets-filter>
+        <ng-template [ngIf]="this.loggedIn$ | async">
+          <mat-card
+            *ngIf="appConfig.addDatasetEnabled"
+            class="add-card"
+            (click)="openDialog()"
+          >
+            <mat-icon> add_circle </mat-icon>
+            Create Dataset
+          </mat-card>
 
-        <mat-card
-          *ngIf="appConfig.addDatasetEnabled"
-          class="add-card"
-          (click)="openDialog()"
-        >
-          <mat-icon> add_circle </mat-icon>
-          Create Dataset
-        </mat-card>
-
-        <div *ngIf="!appConfig.shoppingCartOnHeader && (nonEmpty$ | async)">
-          <batch-card></batch-card>
-        </div>
+          <div *ngIf="!appConfig.shoppingCartOnHeader && (nonEmpty$ | async)">
+            <batch-card></batch-card>
+          </div>
+        </ng-template>
       </div>
 
       <div class="table-column" fxFlex="85" fxFlex.lt-xl="80">
-        <dataset-table-actions
-          [selectedSets]="selectedSets$ | async"
-        ></dataset-table-actions>
+        <ng-template [ngIf]="this.loggedIn$ | async">
+          <dataset-table-actions
+            [selectedSets]="selectedSets$ | async"
+          ></dataset-table-actions>
+        </ng-template>
 
         <dataset-table
           [tableColumns]="tableColumns$ | async"

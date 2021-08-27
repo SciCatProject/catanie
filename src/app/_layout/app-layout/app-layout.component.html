@@ -1,10 +1,10 @@
 <div
   [class.dark-theme]="darkTheme$ | async"
   [class.light-theme]="(darkTheme$ | async) === false"
+  [ngClass]="{'anonymous-site' : (loggedIn$ | async) === false}"
 >
   <app-app-header></app-app-header>
   <div class="main">
-    <breadcrumb></breadcrumb>
     <router-outlet></router-outlet>
   </div>
 </div>

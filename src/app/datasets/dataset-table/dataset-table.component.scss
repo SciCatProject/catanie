@@ -12,6 +12,11 @@
 
     mat-header-cell {
       justify-content: left;
+
+      mat-icon {
+        display: flex;
+        padding-top: 0.25rem;
+      }
     }
 
     mat-header-cell:nth-child(-n + 2) {

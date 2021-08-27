@@ -35,14 +35,14 @@
             <mat-chip-list #keywordChips>
               <mat-chip
                 *ngFor="let keyword of dataset.keywords"
-                [removable]="true"
+                [removable]="editingAllowed"
                 (removed)="onRemoveKeyword(keyword)"
                 (click)="onClickKeyword(keyword)"
               >
                 {{ keyword }}
-                <mat-icon matChipRemove>cancel</mat-icon>
+                <mat-icon *ngIf="editingAllowed" matChipRemove>cancel</mat-icon>
               </mat-chip>
-              <mat-chip class="add-keyword-chip" (click)="editEnabled = true">
+              <mat-chip *ngIf="editingAllowed" class="add-keyword-chip" (click)="editEnabled = true">
                 Add Keyword <mat-icon>add</mat-icon>
               </mat-chip>
             </mat-chip-list>
@@ -156,20 +156,20 @@
       <table>
         <tr *ngIf="dataset['proposalId'] && proposal">
           <th>Proposal</th>
-          <td (click)="onClickProposal(proposal.proposalId)">
+          <td (click)="editingAllowed? onClickProposal(proposal.proposalId) : ''">
             <a>{{ proposal.title }}</a>
           </td>
         </tr>
         <tr *ngIf="dataset['sampleId'] && sample">
           <th>Sample</th>
           <td>
-            <a (click)="onClickSample(sample.sampleId)">{{
+            <a (click)="editingAllowed? onClickSample(sample.sampleId) : ''">{{
               sample.description
             }}</a>
             <span
               class="sample-edit"
               (click)="openSampleEditDialog()"
-              *ngIf="appConfig.editDatasetSampleEnabled && isPI"
+              *ngIf="appConfig.editDatasetSampleEnabled && editingAllowed && isPI"
             >
               <mat-icon>edit</mat-icon>
             </span>
@@ -247,19 +247,23 @@
       </mat-card-header>
 
       <ng-template [ngIf]="appConfig.tableSciDataEnabled" [ngIfElse]="jsonView">
-        <mat-tab-group class="metadataGroup">
+        <ng-template #metadataView>
+          <div [ngSwitch]="appConfig.metadataStructure">
+            <tree-view *ngSwitchCase="'tree'"
+                       [metadata]="dataset['scientificMetadata']"></tree-view>
+            <metadata-view *ngSwitchDefault
+                           [metadata]="dataset['scientificMetadata']"></metadata-view>
+          </div>
+        </ng-template>
+        <mat-tab-group class="metadataGroup" *ngIf="editingAllowed;else metadataView">
           <mat-tab>
             <ng-template mat-tab-label>
               <mat-icon> list </mat-icon> View
             </ng-template>
-            <div [ngSwitch]="appConfig.metadataStructure">
-              <tree-view *ngSwitchCase="'tree'"
-                [metadata]="dataset['scientificMetadata']"></tree-view>
-              <metadata-view *ngSwitchDefault
-                [metadata]="dataset['scientificMetadata']"></metadata-view>
-            </div>
+            <ng-container *ngTemplateOutlet="metadataView">
+            </ng-container>
           </mat-tab>
-          <mat-tab class="editTab" [hidden]="!appConfig.editMetadataEnabled">
+          <mat-tab class="editTab" *ngIf="editingAllowed" [hidden]="!appConfig.editMetadataEnabled">
             <ng-template mat-tab-label>
               <mat-icon> edit </mat-icon> Edit
             </ng-template>
@@ -285,8 +289,7 @@
         ></ngx-json-viewer>
       </ng-template>
     </mat-card>
-
-    <mat-card *ngIf="appConfig.jsonMetadataEnabled">
+    <mat-card *ngIf="editingAllowed && appConfig.jsonMetadataEnabled">
       <button mat-stroked-button (click)="show = !show">
         {{ show ? "Hide MetaData" : "Show Metadata" }}
       </button>

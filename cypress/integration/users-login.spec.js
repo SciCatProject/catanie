@@ -9,7 +9,7 @@ describe("Users Login", () => {
 
     cy.visit("/");
 
-    cy.url().should("include", "/anonymous/datasets");
+    cy.url().should("include", "/datasets");
 
     cy.wait(5000);
 
@@ -37,7 +37,7 @@ describe("Users Login", () => {
 
     cy.visit("/");
 
-    cy.url().should("include", "/anonymous/datasets");
+    cy.url().should("include", "/datasets");
 
     cy.wait(5000);
 

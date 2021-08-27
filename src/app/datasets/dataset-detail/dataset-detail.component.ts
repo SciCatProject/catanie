@@ -24,6 +24,7 @@ export class DatasetDetailComponent {
   @Input() proposal: Proposal | null = null;
   @Input() sample: Sample | null = null;
   @Input() isPI = false;
+  @Input() editingAllowed = false;
 
   @Output() clickKeyword = new EventEmitter<string>();
   @Output() addKeyword = new EventEmitter<string>();

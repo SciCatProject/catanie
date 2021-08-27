@@ -42,7 +42,7 @@ export class DatasetTableActionsComponent implements OnInit, OnDestroy {
   ];
 
   searchPublicDataEnabled = this.appConfig.searchPublicDataEnabled;
-  currentPublicViewMode = false;
+  currentPublicViewMode: boolean | "" = "";
 
   subscriptions: Subscription[] = [];
 

@@ -116,16 +116,6 @@ describe("test dataset selectors", () => {
     });
   });
 
-  describe("getAnonymousFilters", () => {
-    it("should get the dataset filters, isPublished excluded", () => {
-      const { isPublished, ...anonymousFilters } = initialDatasetState.filters;
-
-      expect(
-        fromDatasetSelectors.getAnonymousFilters.projector(initialDatasetState)
-      ).toEqual(anonymousFilters);
-    });
-  });
-
   describe("getTextFilter", () => {
     it("should get the text filter", () => {
       expect(

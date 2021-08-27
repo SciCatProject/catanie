@@ -1,12 +1,12 @@
 <div class="header">
   <mat-menu #userMenu="matMenu">
     <button mat-menu-item routerLink="/datasets/">
-      <mat-icon> folder </mat-icon>
+      <mat-icon> folder</mat-icon>
       <span>Datasets</span>
     </button>
 
     <button mat-menu-item routerLink="/files/">
-      <mat-icon> text_snippet </mat-icon>
+      <mat-icon> text_snippet</mat-icon>
       <span>Files</span>
     </button>
 
@@ -17,61 +17,61 @@
 
     <ng-container *ngIf="appConfig.jobsEnabled">
       <button mat-menu-item routerLink="/user/jobs">
-        <mat-icon> transfer_within_a_station </mat-icon>
+        <mat-icon> transfer_within_a_station</mat-icon>
         <span>Jobs</span>
       </button>
     </ng-container>
 
     <ng-container *ngIf="appConfig.logbookEnabled">
       <button mat-menu-item routerLink="/logbooks/">
-        <mat-icon> book </mat-icon>
+        <mat-icon> book</mat-icon>
         <span>Logbooks</span>
       </button>
     </ng-container>
 
     <ng-container *ngIf="appConfig.policiesEnabled">
       <button mat-menu-item routerLink="/policies/">
-        <mat-icon> cloud_download </mat-icon>
+        <mat-icon> cloud_download</mat-icon>
         <span>Policies</span>
       </button>
     </ng-container>
 
     <button mat-menu-item routerLink="/proposals/">
-      <mat-icon> spa </mat-icon>
+      <mat-icon> spa</mat-icon>
       <span>Proposals</span>
     </button>
 
     <button mat-menu-item routerLink="/publishedDatasets/">
-      <mat-icon> chrome_reader_mode </mat-icon>
+      <mat-icon> chrome_reader_mode</mat-icon>
       <span>Published Data</span>
     </button>
 
     <button mat-menu-item routerLink="/samples/">
-      <mat-icon> center_focus_weak </mat-icon>
+      <mat-icon> center_focus_weak</mat-icon>
       <span>Samples</span>
     </button>
 
     <button mat-menu-item routerLink="/user/">
-      <mat-icon> settings </mat-icon>
+      <mat-icon> settings</mat-icon>
       <span>Settings</span>
     </button>
 
     <button mat-menu-item (click)="logout()">
-      <mat-icon> exit_to_app </mat-icon>
+      <mat-icon> exit_to_app</mat-icon>
       <span>Logout</span>
     </button>
   </mat-menu>
 
   <mat-toolbar class="mat-elevation-z1" color="primary">
     <a [routerLink]="['/datasets']">
-      <img class="logo" src="../../../assets/images/scicat-logo-white.png" />
+      <img class="logo" src="../../../assets/images/scicat-logo-white.png"/>
     </a>
     <a [routerLink]="['/datasets']">
       <ng-template [ngIf]="facility === 'ESS'" [ngIfElse]="otherFacility">
-        <img class="logo" src="../../../assets/images/esslogo-white.png" />
+        <img class="logo" src="../../../assets/images/esslogo-white.png"/>
       </ng-template>
       <ng-template #otherFacility>
-        <img class="logo" src="../../../assets/images/site-logo.png" />
+        <img class="logo" src="../../../assets/images/site-logo.png"/>
       </ng-template>
     </a>
     <a class="toplink" [routerLink]="['/datasets']">
@@ -96,29 +96,39 @@
         >
       </h6>
     </span>
-
-    <span *ngIf="appConfig.shoppingCartOnHeader" [matMenuTriggerFor]="cartMenu">
-      <button
-        id="cartOnHeaderButton"
-        mat-icon-button
-        matBadge="{{ inBatchIndicator === '0' ? null : inBatchIndicator }}"
-        matBadgePosition="after"
-        matBadgeColor="accent"
-        matBadgeSize="medium"
-      >
-        <mat-icon> shopping_cart </mat-icon>
-      </button>
+    <span *ngIf="(this.loggedIn$ | async) === false;else userButton">
+      <h6>
+        <a class="toplink" [routerLink]="['/login']" data-cy="login-button">
+          <mat-icon> account_circle </mat-icon>
+          <span class="large-screen-text">Sign in</span>
+        </a>
+      </h6>
     </span>
+    <ng-template #userButton>
+      <span *ngIf="appConfig.shoppingCartOnHeader" [matMenuTriggerFor]="cartMenu">
+        <button
+          id="cartOnHeaderButton"
+          mat-icon-button
+          matBadge="{{ inBatchIndicator === '0' ? null : inBatchIndicator }}"
+          matBadgePosition="after"
+          matBadgeColor="accent"
+          matBadgeSize="medium"
+        >
+          <mat-icon> shopping_cart </mat-icon>
+        </button>
+      </span>
 
-    <mat-menu class="custom-menu" #cartMenu="matMenu">
-      <batch-card></batch-card>
-    </mat-menu>
+        <mat-menu class="custom-menu" #cartMenu="matMenu">
+          <batch-card></batch-card>
+        </mat-menu>
 
-    <span>
-      <button mat-button class="user-button" [matMenuTriggerFor]="userMenu">
-        <img class="user-image" src="{{ profileImage }}" />
-        <div class="large-screen-text">{{ username }}</div>
-      </button>
-    </span>
+        <span>
+        <button mat-button class="user-button" [matMenuTriggerFor]="userMenu">
+          <img class="user-image" src="{{ profileImage }}"/>
+          <div class="large-screen-text">{{ username }}</div>
+        </button>
+      </span>
+    </ng-template>
+
   </mat-toolbar>
 </div>
