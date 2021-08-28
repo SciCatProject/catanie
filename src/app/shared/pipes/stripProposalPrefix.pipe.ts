@@ -8,6 +8,7 @@ export class StripProposalPrefixPipe implements PipeTransform {
     if (!value) {
       return "";
     }
-    return value.replace(/proposal-/i, "");
+    //Proposal might be of other type than string
+    return String(value).replace(/proposal-/i, "");
   }
 }

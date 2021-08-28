@@ -359,9 +359,9 @@
             </div>
           </mat-header-cell>
           <mat-cell *matCellDef="let dataset">
-            <div *ngIf="dataset.scientificMetadata[column.name]">
-              {{ dataset.scientificMetadata[column.name].value }}&nbsp;{{
-                dataset.scientificMetadata[column.name].unit | prettyUnit
+            <div *ngIf="lodashGet(dataset.scientificMetadata, column.name)">
+              {{ lodashGet(dataset.scientificMetadata, column.name + ".value") }}&nbsp;{{
+                lodashGet(dataset.scientificMetadata, column.name + ".unit") | prettyUnit
               }}
             </div>
           </mat-cell>
@@ -385,3 +385,5 @@
     </mat-row>
   </mat-table>
 </div>
+
+

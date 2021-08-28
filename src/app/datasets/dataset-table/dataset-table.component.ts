@@ -36,7 +36,7 @@ import {
   selectColumnAction,
   deselectColumnAction,
 } from "state-management/actions/user.actions";
-
+import {get} from "lodash";
 export interface SortChangeEvent {
   active: string;
   direction: "asc" | "desc" | "";
@@ -57,6 +57,7 @@ export class DatasetTableComponent implements OnInit, OnDestroy, OnChanges {
   private inBatchPids: string[] = [];
   private subscriptions: Subscription[] = [];
 
+  lodashGet = get;
   currentPage$ = this.store.pipe(select(getPage));
   datasetsPerPage$ = this.store.pipe(select(getDatasetsPerPage));
   datasetCount$ = this.store.select(getTotalSets);
@@ -76,7 +77,6 @@ export class DatasetTableComponent implements OnInit, OnDestroy, OnChanges {
     @Inject(APP_CONFIG) public appConfig: AppConfig,
     private store: Store<any>
   ) {}
-
   doSettingsClick(event: MouseEvent) {
     this.settingsClick.emit(event);
   }
