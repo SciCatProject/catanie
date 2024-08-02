@@ -107,7 +107,7 @@ describe("SearchParametersDialogComponent", () => {
   });
 
   describe("#toggleUnitField()", () => {
-    it("should enable unitField if lhs is valid and relation is not EQUAL_TO_STRING", () => {
+    it("should enable unitField if lhs is valid and relation is not CONTAINS_STRING or EQUAL_TO_STRING", () => {
       const formValues = {
         lhs: "mass",
         relation: "LESS_THAN",

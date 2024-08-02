@@ -57,8 +57,9 @@ export class SearchParametersDialogComponent {
   add = (): void => {
     const { lhs, relation, unit } = this.parametersForm.value;
     const rawRhs = this.parametersForm.get("rhs")?.value;
-    const rhs =
-      relation === "EQUAL_TO_STRING" ? String(rawRhs) : Number(rawRhs);
+    const rhs = ["CONTAINS_STRING", "EQUAL_TO_STRING"].includes(relation)
+      ? String(rawRhs)
+      : Number(rawRhs);
     this.parametersForm.patchValue({ rhs });
     this.dialogRef.close({ data: { lhs, relation, rhs, unit } });
   };
@@ -73,7 +74,11 @@ export class SearchParametersDialogComponent {
   toggleUnitField = (): void => {
     const lhsInvalid = this.parametersForm.get("lhs")?.invalid;
     const { relation } = this.parametersForm.value;
-    const isStringRelation = relation === "EQUAL_TO_STRING" ? true : false;
+    const isStringRelation = ["CONTAINS_STRING", "EQUAL_TO_STRING"].includes(
+      relation,
+    )
+      ? true
+      : false;
     const unitField = this.parametersForm.get("unit");
     unitField?.enable();
     if (lhsInvalid || isStringRelation) {
@@ -88,7 +93,10 @@ export class SearchParametersDialogComponent {
     if (invalid) {
       return invalid;
     }
-    if (relation !== "EQUAL_TO_STRING" && isNaN(Number(rhs))) {
+    if (
+      !["CONTAINS_STRING", "EQUAL_TO_STRING"].includes(relation) &&
+      isNaN(Number(rhs))
+    ) {
       return true;
     }
     return lhs.length * (rhs as string).length === 0;
