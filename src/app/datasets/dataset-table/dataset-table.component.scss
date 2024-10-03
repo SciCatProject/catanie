@@ -1,3 +1,33 @@
+.dataset-container {
+  position: relative; /* Container to position the overlay absolutely */
+
+  .opaque {
+    opacity: 0.5; /* Make the table semi-transparent when overlay is active */
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure the overlay is above the table */
+    pointer-events: all; /* Make sure the overlay captures the button click */
+  }
+
+  .overlay-content {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+}
+
 .dataset-table {
   mat-table {
     overflow-x: scroll;

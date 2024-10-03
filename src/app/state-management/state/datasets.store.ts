@@ -30,6 +30,7 @@ export interface DatasetState {
 
   facetCounts: FacetCounts;
   metadataKeys: string[];
+  metadataTypes: Record<string, string>[];
   hasPrefilledFilters: boolean;
   searchTerms: string;
   keywordsTerms: string;
@@ -46,6 +47,8 @@ export interface DatasetState {
   batch: Dataset[];
 
   openwhiskResult: Record<string, unknown> | undefined;
+
+  dataLoaded: boolean;
 }
 
 export const initialDatasetState: DatasetState = {
@@ -58,6 +61,7 @@ export const initialDatasetState: DatasetState = {
 
   facetCounts: {},
   metadataKeys: [],
+  metadataTypes: [],
   hasPrefilledFilters: false,
   searchTerms: "",
   keywordsTerms: "",
@@ -91,4 +95,6 @@ export const initialDatasetState: DatasetState = {
   batch: [],
 
   openwhiskResult: undefined,
+
+  dataLoaded: false,
 };

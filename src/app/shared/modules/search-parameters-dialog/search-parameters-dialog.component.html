@@ -5,8 +5,8 @@
       <mat-label>Field</mat-label>
       <input
         matInput
-        autocomplete="off"
-        autocorrect="off"
+        autocomplete="on"
+        autocorrect="on"
         autocapitalize="off"
         spellcheck="false"
         name="lhs"
@@ -26,18 +26,17 @@
       </mat-autocomplete>
     </mat-form-field>
 
+    <!-- Operator Selection (Dynamic based on Field Type) -->
     <mat-form-field>
       <mat-label>Operator</mat-label>
       <mat-select
         name="operator"
         formControlName="relation"
         (focus)="toggleUnitField()"
-        (selectionChange)="toggleUnitField()"
-      >
-        <mat-option value="GREATER_THAN">is greater than</mat-option>
-        <mat-option value="LESS_THAN">is less than</mat-option>
-        <mat-option value="EQUAL_TO_NUMERIC">is equal to (numeric)</mat-option>
-        <mat-option value="EQUAL_TO_STRING">is equal to (string)</mat-option>
+        (selectionChange)="toggleUnitField()">
+        <mat-option *ngFor="let operator of filteredOperators$ | async" [value]="operator.value">
+          {{ operator.label }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 

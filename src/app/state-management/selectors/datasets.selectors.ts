@@ -18,6 +18,11 @@ export const selectMetadataKeys = createSelector(
   (state) => state.metadataKeys,
 );
 
+export const selectMetadataTypes = createSelector(
+  selectDatasetState,
+  (state) => state.metadataTypes,
+);
+
 export const selectCurrentDataset = createSelector(
   selectDatasetState,
   (state) => state.currentSet,
@@ -286,4 +291,9 @@ export const selectRelatedDatasetsCurrentPage = createSelector(
 export const selectRelatedDatasetsPerPage = createSelector(
   selectRelatedDatasetsFilters,
   (filters) => filters.limit,
+);
+
+export const selectLoadData = createSelector(
+  selectDatasetState,
+  (state) => state.dataLoaded,
 );

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -16,14 +16,16 @@ import {
   selectColumnAction,
 } from "../../../state-management/actions/user.actions";
 import { Store } from "@ngrx/store";
-import { selectMetadataKeys } from "../../../state-management/selectors/datasets.selectors";
+import {
+  selectMetadataKeys,
+  selectMetadataTypes,
+} from "../../../state-management/selectors/datasets.selectors";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import {
   ConditionConfig,
   FilterConfig,
 } from "../../../shared/modules/filters/filters.module";
 import { getFilterLabel } from "../../../shared/modules/filters/utils";
-import { ScientificCondition } from "../../../state-management/models";
 
 @Component({
   selector: "app-type-datasets-filter-settings",
@@ -34,6 +36,7 @@ export class DatasetsFilterSettingsComponent {
   protected readonly getFilterLabel = getFilterLabel;
 
   metadataKeys$ = this.store.select(selectMetadataKeys);
+  metadataTypes$ = this.store.select(selectMetadataTypes);
 
   appConfig = this.appConfigService.getConfig();
 
@@ -51,6 +54,7 @@ export class DatasetsFilterSettingsComponent {
       .open(SearchParametersDialogComponent, {
         data: {
           parameterKeys: this.asyncPipe.transform(this.metadataKeys$),
+          parameterTypes: this.asyncPipe.transform(this.metadataTypes$),
         },
       })
       .afterClosed()

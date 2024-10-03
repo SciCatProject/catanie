@@ -1,10 +1,20 @@
-import { ChangeDetectorRef, Component, Inject } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { AppConfigService } from "app-config.service";
-import { map, startWith } from "rxjs/operators";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  mergeMap,
+  startWith,
+  switchMap,
+  take,
+} from "rxjs/operators";
 import { UnitsService } from "shared/services/units.service";
 import { ScientificCondition } from "../../../state-management/models";
+import { Observable, of } from "rxjs";
 
 @Component({
   selector: "search-parameters-dialog",
@@ -15,6 +25,8 @@ export class SearchParametersDialogComponent {
   unitsEnabled = this.appConfig.scienceSearchUnitsEnabled;
 
   parameterKeys = this.data.parameterKeys;
+  parameterTypes = this.data.parameterTypes;
+  filteredOperators$: Observable<{ value: string; label: string }[]> = of([]); // TODO default set of operators
   units: string[] = [];
 
   parametersForm = new FormGroup({
@@ -56,6 +68,7 @@ export class SearchParametersDialogComponent {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       parameterKeys: string[];
+      parameterTypes: Record<string, string>[];
       condition?: ScientificCondition;
     },
     public dialogRef: MatDialogRef<SearchParametersDialogComponent>,
@@ -63,6 +76,68 @@ export class SearchParametersDialogComponent {
   ) {
     if (this.data.condition?.lhs) {
       this.getUnits(this.data.condition.lhs);
+    }
+
+    // Dynamically update operators based on the field selected by the user
+    this.parametersForm
+      .get("lhs")!
+      .valueChanges.pipe(
+        debounceTime(300),
+        filter((selectedLhs: string) => selectedLhs && selectedLhs.length > 3),
+        distinctUntilChanged(),
+        mergeMap((selectedLhs: string) => {
+          return this.parameterTypes.filter((type) =>
+            type.metadataKey.includes(selectedLhs),
+          );
+        }),
+        take(1),
+        map((field) => {
+          return this.extractFieldType(field.metadataType);
+        }),
+      )
+      .subscribe((type) => {
+        this.filteredOperators$ = of(this.getOperatorsByType(type));
+      });
+  }
+
+  // Helper to extract the field type from the dataset
+  private extractFieldType(type: string): string {
+    // Assuming metadata structure contains field type info
+    if (type === "string") {
+      return "string";
+    } else if (type === "int" || type === "double" /*|| type === "mixed"*/) {
+      // TODO what to do with mixed type
+      return "number";
+    } else if (type === "Date") {
+      return "date";
+    }
+
+    return "string"; // Default to string if type can't be inferred
+  }
+
+  // Dynamically fetch operators based on field type
+  private getOperatorsByType(
+    fieldType: string,
+  ): { value: string; label: string }[] {
+    switch (fieldType) {
+      case "string":
+        return [
+          { value: "EQUAL_TO_STRING", label: "is equal to (string)" },
+          { value: "CONTAINS", label: "contains" },
+        ];
+      case "number":
+        return [
+          { value: "GREATER_THAN", label: "is greater than" },
+          { value: "LESS_THAN", label: "is less than" },
+          { value: "EQUAL_TO_NUMERIC", label: "is equal to (numeric)" },
+        ];
+      case "date":
+        return [
+          { value: "BEFORE", label: "is before" },
+          { value: "AFTER", label: "is after" },
+        ];
+      default:
+        return [{ value: "EQUAL", label: "is equal to" }];
     }
   }
 

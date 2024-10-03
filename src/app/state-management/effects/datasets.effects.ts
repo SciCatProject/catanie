@@ -35,6 +35,7 @@ import {
   loadingCompleteAction,
   updateUserSettingsAction,
 } from "state-management/actions/user.actions";
+import { fetchMetadataTypesAction } from "state-management/actions/datasets.actions";
 
 @Injectable()
 export class DatasetEffects {
@@ -89,12 +90,26 @@ export class DatasetEffects {
       map(([action, params]) => params),
       mergeMap(({ query }) => {
         const parsedQuery = JSON.parse(query);
-        parsedQuery.metadataKey = "";
+        parsedQuery.scientificMetadata = { $exists: true, $ne: "" };
         return this.datasetApi.metadataKeys(JSON.stringify(parsedQuery)).pipe(
           map((metadataKeys) =>
             fromActions.fetchMetadataKeysCompleteAction({ metadataKeys }),
           ),
           catchError(() => of(fromActions.fetchMetadataKeysFailedAction())),
+        );
+      }),
+    );
+  });
+
+  fetchMetadataTypes$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(fromActions.fetchMetadataTypesAction),
+      mergeMap(() => {
+        return this.datasetApi.metadataTypes().pipe(
+          map((metadataTypes) =>
+            fromActions.fetchMetadataTypesCompleteAction({ metadataTypes }),
+          ),
+          catchError(() => of(fromActions.fetchMetadataTypesFailedAction())),
         );
       }),
     );

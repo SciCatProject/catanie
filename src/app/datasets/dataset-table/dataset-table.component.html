@@ -1,4 +1,15 @@
-<div class="dataset-table">
+<div class="dataset-container">
+  <!-- Overlay that contains the button -->
+  <div class="overlay" *ngIf="(dataLoaded$ | async) === false">
+    <div class="overlay-content">
+      <p>No data loaded. Please click the button below to load data.</p>
+      <button mat-raised-button color="primary" (click)="loadData()">
+        Load Data
+      </button>
+    </div>
+  </div>
+
+<div class="dataset-table" [ngClass]="{ 'opaque': (dataLoaded$ | async) === false }">
   <!--https://tburleson-layouts-demos.firebaseapp.com/#/docs-->
   <div fxLayout="row" fxLayoutAlign="space-evenly end">
     <div style="flex: 1"></div>
@@ -406,4 +417,5 @@
     >
     </mat-row>
   </mat-table>
+</div>
 </div>

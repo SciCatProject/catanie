@@ -2979,6 +2979,25 @@ export class DatasetApi extends BaseLoopBackApi {
     return result;
   }
 
+  public metadataTypes(): Observable<any> {
+    let _method: string = "GET";
+    let _url: string =
+      LoopBackConfig.getPath() +
+      "/" +
+      LoopBackConfig.getApiVersion() +
+      "/Datasets/metadataTypes";
+    let result = this.request(
+      _method,
+      _url,
+      undefined,
+      undefined,
+      undefined,
+      null,
+      undefined,
+    );
+    return result;
+  }
+
   /**
    * The name of the model represented by this $resource,
    * i.e. `Dataset`.

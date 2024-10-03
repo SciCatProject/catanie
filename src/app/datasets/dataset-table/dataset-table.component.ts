@@ -12,7 +12,7 @@ import {
 import { Dataset, TableColumn } from "state-management/models";
 import { MatCheckboxChange } from "@angular/material/checkbox";
 import { Subscription } from "rxjs";
-import { Store } from "@ngrx/store";
+import { ActionsSubject, Store } from "@ngrx/store";
 import {
   clearSelectionAction,
   selectDatasetAction,
@@ -20,6 +20,9 @@ import {
   selectAllDatasetsAction,
   changePageAction,
   sortByColumnAction,
+  fetchDatasetsAction,
+  fetchDatasetCompleteAction,
+  fetchFacetCountsAction,
 } from "state-management/actions/datasets.actions";
 
 import {
@@ -28,6 +31,8 @@ import {
   selectPage,
   selectTotalSets,
   selectDatasetsInBatch,
+  selectLoadData,
+  selectCurrentDataset,
 } from "state-management/selectors/datasets.selectors";
 import { PageChangeEvent } from "shared/modules/table/table.component";
 import {
@@ -37,6 +42,13 @@ import {
 import { get } from "lodash";
 import { AppConfigService } from "app-config.service";
 import { selectCurrentUser } from "state-management/selectors/user.selectors";
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
 export interface SortChangeEvent {
   active: string;
   direction: "asc" | "desc" | "";
@@ -46,6 +58,61 @@ export interface SortChangeEvent {
 //   datasetPid: string;
 //   derivedDatasetsNum: number;
 // }
+
+@Component({
+  selector: "app-guard-dialog",
+  template: `
+    <h1 mat-dialog-title>
+      <mat-icon color="warn" style="vertical-align: middle;">warning</mat-icon>
+      Loading All Data
+    </h1>
+    <div mat-dialog-content>
+      <p>
+        You are about to load all available data. This action might take a long
+        time and consume significant resources.
+      </p>
+      <p>
+        It's recommended to specify search or filter criteria for better
+        performance.
+      </p>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onCancel()">Refine Search</button>
+      <button mat-raised-button color="primary" (click)="onConfirm()">
+        Load All Data
+      </button>
+    </div>
+  `,
+  styles: [
+    `
+      mat-dialog-content {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      mat-dialog-actions {
+        padding-right: 8px;
+      }
+
+      h1 mat-icon {
+        margin-right: 8px;
+      }
+    `,
+  ],
+  standalone: true,
+  imports: [MatIconModule, MatDialogModule, MatButtonModule],
+})
+class GuardDialogComponent {
+  constructor(public dialogRef: MatDialogRef<GuardDialogComponent>) {}
+
+  onConfirm(): void {
+    this.dialogRef.close(true); // User confirmed loading all data
+  }
+
+  onCancel(): void {
+    this.dialogRef.close(false); // User canceled, to refine search
+  }
+}
 
 @Component({
   selector: "dataset-table",
@@ -58,6 +125,8 @@ export class DatasetTableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions: Subscription[] = [];
 
   appConfig = this.appConfigService.getConfig();
+
+  dataLoaded$ = this.store.select(selectLoadData);
 
   lodashGet = get;
   currentPage$ = this.store.select(selectPage);
@@ -77,6 +146,7 @@ export class DatasetTableComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(
     public appConfigService: AppConfigService,
+    public dialog: MatDialog,
     private store: Store,
   ) {}
   doSettingsClick(event: MouseEvent) {
@@ -267,5 +337,20 @@ export class DatasetTableComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  loadData() {
+    const dialogRef = this.dialog.open(GuardDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        // User confirmed, load all data
+        this.store.dispatch(fetchDatasetsAction());
+        this.store.dispatch(fetchFacetCountsAction());
+      } else {
+        // User canceled, show a message or allow them to filter
+        console.log("User chose to refine search or filter.");
+      }
+    });
   }
 }

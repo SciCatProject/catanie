@@ -38,12 +38,27 @@ export const fetchFacetCountsFailedAction = createAction(
 export const fetchMetadataKeysAction = createAction(
   "[Dataset] Fetch Metadata Keys",
 );
+
+export const fetchMetadataTypesAction = createAction(
+  "[Dataset] Fetch Metadata Types",
+);
+
 export const fetchMetadataKeysCompleteAction = createAction(
   "[Dataset] Fetch Metadata Keys Complete",
   props<{ metadataKeys: string[] }>(),
 );
+
 export const fetchMetadataKeysFailedAction = createAction(
   "[Dataset] Fetch Metadata Keys Failed",
+);
+
+export const fetchMetadataTypesCompleteAction = createAction(
+  "[Dataset] Fetch Metadata Types Complete",
+  props<{ metadataTypes: Record<string, string>[] }>(),
+);
+
+export const fetchMetadataTypesFailedAction = createAction(
+  "[Dataset] Fetch Metadata Types Failed",
 );
 
 export const fetchDatasetAction = createAction(
