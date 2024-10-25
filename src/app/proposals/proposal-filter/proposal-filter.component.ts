@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import {
+  MatDatepickerInputEvent,
+  DateRange as MatDateRange,
+} from "@angular/material/datepicker";
 import { DateTime } from "luxon";
 
 export interface DateRange {
@@ -23,7 +26,9 @@ export class ProposalFilterComponent {
 
   @Output() clear = new EventEmitter<any>();
   @Output() searchChange = new EventEmitter<string>();
-  @Output() dateChange = new EventEmitter<MatDatepickerInputEvent<DateTime>>();
+  @Output() dateChange = new EventEmitter<
+    MatDatepickerInputEvent<string, MatDateRange<string>>
+  >();
 
   doClear() {
     this.clear.emit();
@@ -33,7 +38,7 @@ export class ProposalFilterComponent {
     this.searchChange.emit(query);
   }
 
-  doDateChange(value: MatDatepickerInputEvent<DateTime>) {
+  doDateChange(value: MatDatepickerInputEvent<string, MatDateRange<string>>) {
     this.dateChange.emit(value);
   }
 }

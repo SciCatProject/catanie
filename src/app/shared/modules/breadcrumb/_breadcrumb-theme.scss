@@ -6,18 +6,18 @@
 
   .breadcrumb {
     .container {
-      border-top-color: mat.get-color-from-palette($hover, "default");
-      border-bottom-color: mat.get-color-from-palette($hover, "default");
+      border-top-color: mat.m2-get-color-from-palette($hover, "default");
+      border-bottom-color: mat.m2-get-color-from-palette($hover, "default");
 
       .delimiter {
-        color: mat.get-color-from-palette($hover, "darker");
+        color: mat.m2-get-color-from-palette($hover, "darker");
       }
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

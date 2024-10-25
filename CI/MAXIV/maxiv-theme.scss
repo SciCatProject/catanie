@@ -348,9 +348,9 @@ a:hover {
 }
 
 .snackbar-success {
-  background-color: mat.get-color-from-palette($primary, "default");
+  background-color: mat.m2-get-color-from-palette($primary, "default");
 }
 
 .snackbar-error {
-  background-color: mat.get-color-from-palette($warn, "default");
+  background-color: mat.m2-get-color-from-palette($warn, "default");
 }

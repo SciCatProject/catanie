@@ -47,7 +47,7 @@ export class MetadataInputBase {
       const valid = value === "true" || value === "false";
       return valid
         ? null
-        : { invalidBoolean: 'Boolean must be "true" or "false"' }; // eslint-disable-line @typescript-eslint/quotes
+        : { invalidBoolean: 'Boolean must be "true" or "false"' };
     };
   }
   numberValidator(): ValidatorFn {

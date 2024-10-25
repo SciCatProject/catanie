@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { createEffect, Actions, ofType, concatLatestFrom } from "@ngrx/effects";
+import { createEffect, Actions, ofType } from "@ngrx/effects";
 import { LogbookApi, Logbook } from "shared/sdk";
 import * as fromActions from "state-management/actions/logbooks.actions";
 import { mergeMap, catchError, map, timeout } from "rxjs/operators";
@@ -11,6 +11,7 @@ import {
 } from "state-management/actions/user.actions";
 import { Store } from "@ngrx/store";
 import { selectFilters } from "state-management/selectors/logbooks.selectors";
+import { concatLatestFrom } from "@ngrx/operators";
 
 @Injectable()
 export class LogbookEffects {

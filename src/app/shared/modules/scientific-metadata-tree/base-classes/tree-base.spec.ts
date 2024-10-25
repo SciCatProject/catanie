@@ -354,7 +354,7 @@ describe("TreeBaseComponent", () => {
       );
       expect(result).toEqual("[ ]");
     });
-    // eslint-disable-next-line @typescript-eslint/quotes
+
     it('Should get string "" ', () => {
       component.metadata = {
         barCode: "",
@@ -363,7 +363,7 @@ describe("TreeBaseComponent", () => {
       const result = component.getValueRepresentation(
         component.treeControl.dataNodes[0],
       );
-      expect(result).toEqual('""'); // eslint-disable-line @typescript-eslint/quotes
+      expect(result).toEqual('""');
     });
     it("Should get value and symbol Å ", () => {
       component.metadata = {

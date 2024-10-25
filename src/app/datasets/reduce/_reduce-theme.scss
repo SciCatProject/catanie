@@ -6,17 +6,17 @@
   $accent: map-get($color-config, "accent");
   mat-card {
     .action-header {
-      background-color: mat.get-color-from-palette($primary, "lighter");
+      background-color: mat.m2-get-color-from-palette($primary, "lighter");
     }
 
     .derived-header {
-      background-color: mat.get-color-from-palette($accent, "lighter");
+      background-color: mat.m2-get-color-from-palette($accent, "lighter");
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

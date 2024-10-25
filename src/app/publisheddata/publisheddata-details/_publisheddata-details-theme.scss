@@ -9,29 +9,29 @@
   $header-2: map-get($color-config, "header-2");
   mat-card {
     .status-header {
-      background-color: mat.get-color-from-palette($warn, "lighter");
+      background-color: mat.m2-get-color-from-palette($warn, "lighter");
     }
 
     .general-header {
-      background-color: mat.get-color-from-palette($primary, "lighter");
+      background-color: mat.m2-get-color-from-palette($primary, "lighter");
     }
 
     .creator-header {
-      background-color: mat.get-color-from-palette($header-1, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-1, "lighter");
     }
 
     .file-header {
-      background-color: mat.get-color-from-palette($accent, "lighter");
+      background-color: mat.m2-get-color-from-palette($accent, "lighter");
     }
 
     .related-header {
-      background-color: mat.get-color-from-palette($header-2, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-2, "lighter");
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

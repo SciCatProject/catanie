@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType, concatLatestFrom } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { JobApi, Job } from "shared/sdk";
 import { Store } from "@ngrx/store";
 import { selectQueryParams } from "state-management/selectors/jobs.selectors";
@@ -13,6 +13,7 @@ import {
   loadingCompleteAction,
   updateUserSettingsAction,
 } from "state-management/actions/user.actions";
+import { concatLatestFrom } from "@ngrx/operators";
 
 @Injectable()
 export class JobEffects {

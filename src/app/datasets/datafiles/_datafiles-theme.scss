@@ -5,7 +5,7 @@
   $warn-2: map-get($color-config, "warn-2");
 
   .warning-icon {
-    color: mat.get-color-from-palette($warn-2, "default");
+    color: mat.m2-get-color-from-palette($warn-2, "default");
   }
 }
 

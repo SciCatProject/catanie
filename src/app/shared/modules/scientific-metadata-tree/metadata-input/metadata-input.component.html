@@ -58,20 +58,20 @@
       </div>
       <ng-template #dateInput>
         <mat-form-field class="inputField">
-          <input
+          <!-- <input
             matInput
             formControlName="date"
             placeholder="Value"
             [ngxMatDatetimePicker]="picker"
-          />
-          <mat-datepicker-toggle
+          /> -->
+          <!-- <mat-datepicker-toggle
             matSuffix
             [for]="$any(picker)"
-          ></mat-datepicker-toggle>
-          <ngx-mat-datetime-picker
+          ></mat-datepicker-toggle> -->
+          <!-- <ngx-mat-datetime-picker
             #picker
             [showSeconds]="true"
-          ></ngx-mat-datetime-picker>
+          ></ngx-mat-datetime-picker> -->
           <mat-error *ngIf="fieldHasError('date')">
             {{ getErrorMessage("date") }}
           </mat-error>

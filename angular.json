@@ -91,10 +91,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "scicat-frontend:build:production"
+              "buildTarget": "scicat-frontend:build:production"
             },
             "default": {
-              "browserTarget": "scicat-frontend:build:default"
+              "buildTarget": "scicat-frontend:build:default"
             }
           },
           "options": {
@@ -107,7 +107,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "scicat-frontend:build"
+            "buildTarget": "scicat-frontend:build"
           }
         },
         "test": {

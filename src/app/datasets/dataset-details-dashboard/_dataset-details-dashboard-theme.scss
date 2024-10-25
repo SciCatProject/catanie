@@ -6,19 +6,19 @@
   $header-3: map-get($color-config, "header-3");
 
   .jupyter-button {
-    background-color: mat.get-color-from-palette($header-3, "default");
-    color: mat.get-color-from-palette($header-3, "default-contrast");
+    background-color: mat.m2-get-color-from-palette($header-3, "default");
+    color: mat.m2-get-color-from-palette($header-3, "default-contrast");
   }
   mat-card {
     .reset-button {
-      background-color: mat.get-color-from-palette($warn, "default") !important;
-      color: mat.get-color-from-palette($warn, "default-contrast") !important;
+      background-color: mat.m2-get-color-from-palette($warn, "default") !important;
+      color: mat.m2-get-color-from-palette($warn, "default-contrast") !important;
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

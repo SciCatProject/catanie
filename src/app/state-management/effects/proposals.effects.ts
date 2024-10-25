@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType, concatLatestFrom } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { DatasetApi, ProposalApi, Proposal, Dataset } from "shared/sdk";
 import { Store } from "@ngrx/store";
 import * as fromActions from "state-management/actions/proposals.actions";
@@ -13,6 +13,7 @@ import {
   loadingAction,
   loadingCompleteAction,
 } from "state-management/actions/user.actions";
+import { concatLatestFrom } from "@ngrx/operators";
 
 @Injectable()
 export class ProposalEffects {

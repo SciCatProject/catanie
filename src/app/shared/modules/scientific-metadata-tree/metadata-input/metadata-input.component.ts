@@ -24,9 +24,10 @@ export class MetadataInputComponent
   changeDetection: Subscription;
   types: string[];
   @Input() data: FlatNodeEdit;
-  @Output() save = new EventEmitter<InputData | null>();
-  @Output() cancel = new EventEmitter();
-  @Output() changed = new EventEmitter();
+  // NOTE: Prefixing the output bindings with shortcut of component name MetadataInputComponent = mic to avoid: @angular-eslint/no-output-native
+  @Output() micSave = new EventEmitter<InputData | null>();
+  @Output() micCancel = new EventEmitter();
+  @Output() micChanged = new EventEmitter();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,7 +39,7 @@ export class MetadataInputComponent
     this.metadataForm = this.initilizeFormControl();
     this.addCurrentMetadata(this.data);
     this.changeDetection = this.metadataForm.valueChanges.subscribe(() => {
-      this.changed.emit();
+      this.micChanged.emit();
       this.changeDetection.unsubscribe();
     });
   }
@@ -100,12 +101,12 @@ export class MetadataInputComponent
         value: type === Type.date ? new Date(date).toISOString() : value, // Date input could be string or Date
         unit,
       };
-      this.save.emit(data);
+      this.micSave.emit(data);
     } else {
-      this.cancel.emit();
+      this.micCancel.emit();
     }
   }
   onCancel() {
-    this.cancel.emit();
+    this.micCancel.emit();
   }
 }

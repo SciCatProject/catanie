@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType, concatLatestFrom } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { PublishedDataApi, PublishedData } from "shared/sdk";
 import { Store } from "@ngrx/store";
 import {
@@ -23,6 +23,7 @@ import {
   loadingCompleteAction,
 } from "state-management/actions/user.actions";
 import { Router } from "@angular/router";
+import { concatLatestFrom } from "@ngrx/operators";
 
 @Injectable()
 export class PublishedDataEffects {

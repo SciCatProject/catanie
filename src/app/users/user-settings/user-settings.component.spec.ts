@@ -118,7 +118,6 @@ describe("UserSettingsComponent", () => {
       fixture.detectChanges();
 
       const adminTable = fixture.nativeElement.querySelector(
-        // eslint-disable-next-line @typescript-eslint/quotes
         '[data-cy="config-json-view"]',
       );
       expect(adminTable).toBeTruthy();

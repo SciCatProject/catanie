@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType, concatLatestFrom } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { InstrumentApi, Instrument } from "shared/sdk";
 import * as fromActions from "state-management/actions/instruments.actions";
 import { switchMap, map, catchError, mergeMap } from "rxjs/operators";
@@ -10,6 +10,7 @@ import {
   loadingAction,
   loadingCompleteAction,
 } from "state-management/actions/user.actions";
+import { concatLatestFrom } from "@ngrx/operators";
 
 @Injectable()
 export class InstrumentEffects {

@@ -11,33 +11,33 @@
   $header-4: map.get($color-config, "header-4");
   mat-card {
     .general-header {
-      background-color: mat.get-color-from-palette($primary, "lighter");
+      background-color: mat.m2-get-color-from-palette($primary, "lighter");
     }
 
     .creator-header {
-      background-color: mat.get-color-from-palette($header-1, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-1, "lighter");
     }
 
     .file-header {
-      background-color: mat.get-color-from-palette($accent, "lighter");
+      background-color: mat.m2-get-color-from-palette($accent, "lighter");
     }
 
     .related-header {
-      background-color: mat.get-color-from-palette($header-2, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-2, "lighter");
     }
 
     .derived-header {
-      background-color: mat.get-color-from-palette($header-3, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-3, "lighter");
     }
 
     .scientific-header {
-      background-color: mat.get-color-from-palette($header-4, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-4, "lighter");
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

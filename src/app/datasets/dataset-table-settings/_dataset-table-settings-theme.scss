@@ -5,12 +5,12 @@
   $hover: map-get($color-config, "hover");
 
   .close-button {
-    color: mat.get-color-from-palette($hover, "default");
+    color: mat.m2-get-color-from-palette($hover, "default");
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

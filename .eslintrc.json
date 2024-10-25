@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["projects/**/*", "src/app/shared/sdk/"],
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
@@ -19,7 +19,8 @@
         "plugin:prettier/recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@ngrx/all"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -31,19 +32,6 @@
           }
         ],
         "@angular-eslint/component-selector": "off",
-        "@typescript-eslint/member-delimiter-style": [
-          "error",
-          {
-            "multiline": {
-              "delimiter": "semi",
-              "requireLast": true
-            },
-            "singleline": {
-              "delimiter": "semi",
-              "requireLast": false
-            }
-          }
-        ],
         "@typescript-eslint/member-ordering": [
           "error",
           {
@@ -79,24 +67,18 @@
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/no-unsafe-declaration-merging": "warn",
-        "@typescript-eslint/quotes": [
-          "error",
-          "double",
-          {
-            "allowTemplateLiterals": true
-          }
-        ],
-        "@typescript-eslint/semi": ["error", "always"]
+        "@ngrx/avoid-dispatching-multiple-actions-sequentially": "warn",
+        "@ngrx/on-function-explicit-return-type": "warn",
+        "@ngrx/no-multiple-actions-in-effects": "warn",
+        "@ngrx/prefer-concat-latest-from": "warn",
+        "@ngrx/no-store-subscription": "warn",
+        "@ngrx/avoid-mapping-selectors": "warn"
       }
     },
     {
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
-    },
-    {
-      "files": ["*.ts"],
-      "extends": ["plugin:ngrx/recommended"]
     }
   ]
 }

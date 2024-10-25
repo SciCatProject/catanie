@@ -6,14 +6,14 @@
   $hover: map-get($color-config, "hover");
 
   .table-toolbar {
-    background: mat.get-color-from-palette(
+    background: mat.m2-get-color-from-palette(
       $primary,
       "default-contrast"
     ) !important;
   }
   mat-table {
     .first-header-row {
-      background-color: mat.get-color-from-palette(
+      background-color: mat.m2-get-color-from-palette(
         $primary,
         "default"
       ) !important;
@@ -21,31 +21,31 @@
 
     mat-header-cell {
       mat-icon {
-        color: mat.get-color-from-palette($primary, "default-contrast");
+        color: mat.m2-get-color-from-palette($primary, "default-contrast");
       }
 
       .mat-sort-header-content {
-        color: mat.get-color-from-palette($primary, "default-contrast");
+        color: mat.m2-get-color-from-palette($primary, "default-contrast");
       }
     }
 
     mat-row:hover {
-      background-color: mat.get-color-from-palette($hover, "lighter");
+      background-color: mat.m2-get-color-from-palette($hover, "lighter");
     }
 
     .mat-form-field-appearance-outline {
       .mat-form-field-outline {
-        background: mat.get-color-from-palette($primary, "default-contrast");
+        background: mat.m2-get-color-from-palette($primary, "default-contrast");
       }
       .mat-form-field-outline-thick {
-        color: mat.get-color-from-palette($primary, "default");
+        color: mat.m2-get-color-from-palette($primary, "default");
       }
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

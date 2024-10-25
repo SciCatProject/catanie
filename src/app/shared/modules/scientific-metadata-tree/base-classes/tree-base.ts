@@ -211,7 +211,7 @@ export class TreeBaseComponent {
       return "[ ]";
     }
     if (node.value === "") {
-      return '""'; // eslint-disable-line @typescript-eslint/quotes
+      return '""';
     }
     if (node.unit) {
       return `${this.formatNumberPipe.transform(

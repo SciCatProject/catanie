@@ -2,20 +2,20 @@
 @use "@angular/material" as mat;
 
 @mixin color($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   $primary: map.get($color-config, "primary");
 
   a {
-    color: mat.get-color-from-palette($primary, "default");
+    color: mat.m2-get-color-from-palette($primary, "default");
   }
 
   .mat-mdc-snack-bar-container {
-    background-color: mat.get-color-from-palette($primary, "default");
+    background-color: mat.m2-get-color-from-palette($primary, "default");
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

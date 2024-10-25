@@ -31,6 +31,7 @@ export class PublicDownloadDialogComponent {
 
   onCancel(): void {
     this.dialogRef.close();
-    this.emailFormControl.errors;
+    // NOTE: Maybe we dont need to log the errors here but as this was left only with: this.emailFormControl.errors, we can keep it for now.
+    console.error(this.emailFormControl.errors);
   }
 }

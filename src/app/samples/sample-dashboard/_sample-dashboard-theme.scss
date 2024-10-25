@@ -6,19 +6,19 @@
 
   .big-edit-sample {
     mat-icon {
-      color: mat.get-color-from-palette($accent, "default");
+      color: mat.m2-get-color-from-palette($accent, "default");
     }
   }
 
   .small-edit-sample {
     mat-icon {
-      color: mat.get-color-from-palette($accent, "default");
+      color: mat.m2-get-color-from-palette($accent, "default");
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

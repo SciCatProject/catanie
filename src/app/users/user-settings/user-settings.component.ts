@@ -77,9 +77,11 @@ export class UserSettingsComponent implements OnInit {
       (event.key === "Enter" || event.key === " ");
 
     if (isMouseEvent || isKeyboardEvent) {
-      config === "frontend"
-        ? (this.showConfig.frontend = !this.showConfig.frontend)
-        : (this.showConfig.backend = !this.showConfig.backend);
+      if (config === "frontend") {
+        this.showConfig.frontend = !this.showConfig.frontend;
+      } else {
+        this.showConfig.backend = !this.showConfig.backend;
+      }
 
       if (isKeyboardEvent) {
         event.preventDefault();

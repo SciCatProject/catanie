@@ -1,6 +1,9 @@
 import { Component, Input } from "@angular/core";
 import { ClearableInputComponent } from "./clearable-input.component";
-import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import {
+  DateRange as MatDateRange,
+  MatDatepickerInputEvent,
+} from "@angular/material/datepicker";
 import { DateTime } from "luxon";
 import { setDateRangeFilterAction } from "state-management/actions/datasets.actions";
 import { selectCreationTimeFilter } from "state-management/selectors/datasets.selectors";
@@ -44,15 +47,20 @@ export class DateRangeFilterComponent
     this.label = getFilterLabel(filters, this.componentName, this.label);
   }
 
-  dateChanged(event: MatDatepickerInputEvent<DateTime>) {
+  dateChanged(event: MatDatepickerInputEvent<string, MatDateRange<string>>) {
     if (event.value) {
       const name = event.targetElement.getAttribute("name");
       if (name === "begin") {
-        this.dateRange.begin = event.value.toUTC().toISO();
+        this.dateRange.begin = (event.value as unknown as DateTime)
+          .toUTC()
+          .toISO();
         this.dateRange.end = "";
       }
       if (name === "end") {
-        this.dateRange.end = event.value.toUTC().plus({ days: 1 }).toISO();
+        this.dateRange.end = (event.value as unknown as DateTime)
+          .toUTC()
+          .plus({ days: 1 })
+          .toISO();
       }
       if (this.dateRange.begin.length > 0 && this.dateRange.end.length > 0) {
         this.store.dispatch(setDateRangeFilterAction(this.dateRange));

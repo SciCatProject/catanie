@@ -6,17 +6,17 @@
   $header-1: map-get($color-config, "header-1");
   mat-card {
     .general-header {
-      background-color: mat.get-color-from-palette($primary, "lighter");
+      background-color: mat.m2-get-color-from-palette($primary, "lighter");
     }
 
     .customMetadata-header {
-      background-color: mat.get-color-from-palette($header-1, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-1, "lighter");
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

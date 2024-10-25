@@ -74,7 +74,7 @@ describe("MetadataInputBase", () => {
       component.metadataForm.get("type").setValue(Type.boolean);
       component.detectType();
       const result = component.getErrorMessage("value");
-      expect(result).toEqual('Boolean must be "true" or "false"'); // eslint-disable-line @typescript-eslint/quotes
+      expect(result).toEqual('Boolean must be "true" or "false"');
     });
     it("#getErrorMessage() && #numberValidator() should not return any error", () => {
       component.metadataForm.get("type").setValue(Type.number);

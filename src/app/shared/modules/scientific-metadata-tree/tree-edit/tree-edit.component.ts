@@ -177,7 +177,7 @@ export class TreeEditComponent
       duration: 3000,
     });
   }
-  onSave(data: InputData) {
+  onSave(data: Event) {
     const nestedNode = this.flatNodeMap.get(this.currentEditingNode);
     const parentNode = this.getNestedParent(this.nestNodeMap.get(nestedNode));
     const { children, ...oldData } = nestedNode;
@@ -197,10 +197,10 @@ export class TreeEditComponent
         if (oldData.key === "") {
           this.insertNode(parentNode, nestedNode, index);
         }
-        this.updateNode(nestedNode, data);
+        this.updateNode(nestedNode, data as unknown as InputData);
       },
     });
-    this.updateNode(nestedNode, data);
+    this.updateNode(nestedNode, data as unknown as InputData);
     this.openSnackbar(
       "Your changes are cached, hit the save button to save to database !",
     );

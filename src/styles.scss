@@ -30,14 +30,14 @@
 @use "./app/shared/modules/table/table-theme" as table;
 @use "./app/users/user-settings/user-settings-theme" as user-settings;
 
-$my-custom-button-level: mat.define-typography-level(
+$my-custom-button-level: mat.m2-define-typography-level(
   $font-weight: 400,
   $font-size: 14px,
   $line-height: 36px,
   $letter-spacing: normal,
 );
 
-$custom-typography: mat.define-typography-config(
+$custom-typography: mat.m2-define-typography-config(
   $font-family: '"Titillium Web", Calibri, sans-serif',
   $button: $my-custom-button-level,
 );
@@ -153,17 +153,17 @@ $theme-hover: (
   ),
 );
 
-$primary: mat.define-palette($theme-primary, "default", "lighter", "darker");
-$accent: mat.define-palette($theme-accent, "default", "lighter", "darker");
-$warn: mat.define-palette($theme-warn, "default", "lighter", "darker");
-$warn-2: mat.define-palette($theme-warn-2, "default", "lighter", "darker");
-$header-1: mat.define-palette($theme-header-1, "default", "lighter", "darker");
-$header-2: mat.define-palette($theme-header-2, "default", "lighter", "darker");
-$header-3: mat.define-palette($theme-header-3, "default", "lighter", "darker");
-$header-4: mat.define-palette($theme-header-4, "default", "lighter", "darker");
-$hover: mat.define-palette($theme-hover, "default", "lighter", "darker");
+$primary: mat.m2-define-palette($theme-primary, "default", "lighter", "darker");
+$accent: mat.m2-define-palette($theme-accent, "default", "lighter", "darker");
+$warn: mat.m2-define-palette($theme-warn, "default", "lighter", "darker");
+$warn-2: mat.m2-define-palette($theme-warn-2, "default", "lighter", "darker");
+$header-1: mat.m2-define-palette($theme-header-1, "default", "lighter", "darker");
+$header-2: mat.m2-define-palette($theme-header-2, "default", "lighter", "darker");
+$header-3: mat.m2-define-palette($theme-header-3, "default", "lighter", "darker");
+$header-4: mat.m2-define-palette($theme-header-4, "default", "lighter", "darker");
+$hover: mat.m2-define-palette($theme-hover, "default", "lighter", "darker");
 
-$basetheme: mat.define-light-theme(
+$basetheme: mat.m2-define-light-theme(
   (
     color: (
       primary: $primary,
@@ -249,7 +249,7 @@ a:hover {
 }
 
 .snackbar-success {
-  background-color: mat.get-color-from-palette($primary, "default");
+  background-color: mat.m2-get-color-from-palette($primary, "default");
 
   button {
     color: white;
@@ -257,7 +257,7 @@ a:hover {
 }
 
 .snackbar-error {
-  background-color: mat.get-color-from-palette($warn, "default");
+  background-color: mat.m2-get-color-from-palette($warn, "default");
 
   button {
     color: white;

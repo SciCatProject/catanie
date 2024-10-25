@@ -7,27 +7,27 @@
   $hover: map-get($color-config, "hover");
   mat-card {
     .lifecycle-header {
-      background-color: mat.get-color-from-palette($primary, "lighter");
+      background-color: mat.m2-get-color-from-palette($primary, "lighter");
     }
 
     .history-header {
-      background-color: mat.get-color-from-palette($header-1, "lighter");
+      background-color: mat.m2-get-color-from-palette($header-1, "lighter");
     }
 
     .history-table {
       tr.item-row:not(.expanded-row):hover {
-        background: mat.get-color-from-palette($hover, "lighter");
+        background: mat.m2-get-color-from-palette($hover, "lighter");
       }
 
       tr.item-row:not(.expanded-row):active {
-        background: mat.get-color-from-palette($primary, "default-contrast");
+        background: mat.m2-get-color-from-palette($primary, "default-contrast");
       }
     }
   }
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

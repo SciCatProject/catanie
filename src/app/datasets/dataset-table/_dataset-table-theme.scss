@@ -7,26 +7,26 @@
 
   .dataset-table {
     .settings-button {
-      color: mat.get-color-from-palette($hover, "lighter");
+      color: mat.m2-get-color-from-palette($hover, "lighter");
     }
 
     mat-table {
       mat-header-row {
-        background: mat.get-color-from-palette($primary, "default");
+        background: mat.m2-get-color-from-palette($primary, "default");
       }
 
       .mat-sort-header-arrow {
-        color: mat.get-color-from-palette($primary, "default-contrast");
+        color: mat.m2-get-color-from-palette($primary, "default-contrast");
       }
 
       mat-header-cell {
-        color: mat.get-color-from-palette($primary, "default-contrast");
+        color: mat.m2-get-color-from-palette($primary, "default-contrast");
         .mdc-checkbox {
           .mdc-checkbox__native-control:enabled:not(:checked):not(
               :indeterminate
             ):not([data-indeterminate="true"])
             ~ .mdc-checkbox__background {
-            border-color: mat.get-color-from-palette(
+            border-color: mat.m2-get-color-from-palette(
               $primary,
               "default-contrast"
             );
@@ -35,7 +35,7 @@
           .mdc-checkbox__native-control:enabled
             ~ .mdc-checkbox__background
             .mdc-checkbox__checkmark {
-            color: mat.get-color-from-palette($primary, "default-contrast");
+            color: mat.m2-get-color-from-palette($primary, "default-contrast");
           }
         }
       }
@@ -45,7 +45,7 @@
           .mdc-checkbox__native-control:enabled
           ~ .mdc-checkbox__background
           .mdc-checkbox__checkmark {
-          color: mat.get-color-from-palette($primary, "default-contrast");
+          color: mat.m2-get-color-from-palette($primary, "default-contrast");
         }
       }
     }
@@ -53,7 +53,7 @@
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }
