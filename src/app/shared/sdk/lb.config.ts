@@ -24,8 +24,8 @@ export class LoopBackConfig {
   private static version: string | number = "api/v3";
   private static authPrefix: string = "";
   private static debug: boolean = true;
-  private static filterOn: string = "headers";
-  private static whereOn: string = "headers";
+  private static filterOn: string = "url";
+  private static whereOn: string = "url";
   private static secure: boolean = false;
   private static withCredentials: boolean = false;
 
@@ -65,24 +65,8 @@ export class LoopBackConfig {
     LoopBackConfig.filterOn = "url";
   }
 
-  public static filterOnHeaders(): void {
-    LoopBackConfig.filterOn = "headers";
-  }
-
   public static whereOnUrl(): void {
     LoopBackConfig.whereOn = "url";
-  }
-
-  public static whereOnHeaders(): void {
-    LoopBackConfig.whereOn = "headers";
-  }
-
-  public static isHeadersFilteringSet(): boolean {
-    return LoopBackConfig.filterOn === "headers";
-  }
-
-  public static isHeadersWhereSet(): boolean {
-    return LoopBackConfig.whereOn === "headers";
   }
 
   public static setSecureWebSockets(): void {

@@ -124,30 +124,17 @@ export abstract class BaseLoopBackApi {
 
       // Separate filter object from url params and add to search query
       if (urlParams.filter) {
-        if (LoopBackConfig.isHeadersFilteringSet()) {
-          headers = headers.append("filter", JSON.stringify(urlParams.filter));
-        } else {
-          queryString = `?filter=${encodeURIComponent(
-            JSON.stringify(urlParams.filter),
-          )}`;
-        }
+        queryString = `?filter=${encodeURIComponent(
+          JSON.stringify(urlParams.filter),
+        )}`;
         delete urlParams.filter;
       }
 
       // Separate where object from url params and add to search query
       if (urlParams.where) {
-        if (LoopBackConfig.isHeadersWhereSet()) {
-          /**
-          CODE BELOW WILL GENERATE THE FOLLOWING ISSUES:
-          - https://github.com/mean-expert-official/loopback-sdk-builder/issues/356
-          - https://github.com/mean-expert-official/loopback-sdk-builder/issues/328 
-          **/
-          headers = headers.append("where", JSON.stringify(urlParams.where));
-        } else {
-          queryString = `?where=${encodeURIComponent(
-            JSON.stringify(urlParams.where),
-          )}`;
-        }
+        queryString = `?where=${encodeURIComponent(
+          JSON.stringify(urlParams.where),
+        )}`;
         delete urlParams.where;
       }
 
