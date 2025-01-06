@@ -48,7 +48,7 @@ services:
     build:
       context: .
     ports:
-      - 4200:80
+      - 4200:8080
     volumes:
       - "./CI/e2e/frontend.config.e2e.json:/usr/share/nginx/html/assets/config.json"
     depends_on:
