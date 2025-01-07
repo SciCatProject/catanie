@@ -8,8 +8,9 @@ RUN npm ci
 COPY . /frontend/
 RUN npx ng build
 
-FROM nginx:1.25-alpine
+FROM nginx:1.27-alpine
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /frontend/dist/ /usr/share/nginx/html/
 COPY scripts/nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
+USER 1000
+EXPOSE 8080
