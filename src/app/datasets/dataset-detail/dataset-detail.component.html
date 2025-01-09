@@ -35,23 +35,23 @@
         <mat-card-content>
           <table>
             <tr>
-              <th>Name</th>
+              <th>{{ "dataset_name" | translate }}</th>
               <td *ngIf="!editEnabled">{{ dataset.datasetName || "-" }}</td>
               <td *ngIf="editEnabled && editingAllowed">
                 <mat-form-field class="full-width">
-                  <mat-label>Name</mat-label>
+                  <mat-label>dataset_name</mat-label>
                   <input matInput type="text" formControlName="datasetName" />
                 </mat-form-field>
               </td>
             </tr>
             <tr>
-              <th>Description</th>
+              <th>{{ "description" | translate }}</th>
               <td *ngIf="!editEnabled">
                 <span [innerHTML]="dataset.description || '-' | linky"></span>
               </td>
               <td *ngIf="editEnabled && editingAllowed">
                 <mat-form-field class="full-width">
-                  <mat-label>Description</mat-label>
+                  <mat-label>description</mat-label>
                   <textarea
                     matInput
                     rows="5"
@@ -61,7 +61,7 @@
               </td>
             </tr>
             <tr>
-              <th>PID</th>
+              <th>{{ "pid" | translate }}</th>
               <td>
                 {{ dataset.pid }}
                 <button
@@ -74,15 +74,15 @@
               </td>
             </tr>
             <tr *ngIf="dataset.type as value">
-              <th>Type</th>
+              <th>{{ "type" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset.creationTime as value">
-              <th>Creation Time</th>
+              <th>{{ "creation_time" | translate }}</th>
               <td>{{ value | date: "yyyy-MM-dd HH:mm" }}</td>
             </tr>
             <tr class="keywords-row">
-              <th>Keywords</th>
+              <th>{{ "keywords" | translate }}</th>
               <td *ngIf="!editEnabled">
                 <mat-chip-set role="list" #keywordChips>
                   <mat-chip
@@ -118,7 +118,7 @@
               </td>
             </tr>
             <tr *ngIf="dataset.sharedWith && dataset.sharedWith.length > 0">
-              <th>Shared With</th>
+              <th>{{ "shared_with" | translate }}</th>
               <td>
                 <mat-chip-listbox>
                   <mat-chip-option
@@ -171,17 +171,17 @@
           <div mat-card-avatar class="section-icon">
             <mat-icon> person </mat-icon>
           </div>
-          Creator Information
+          {{ "creator_information" | translate }}
         </mat-card-header>
 
         <mat-card-content>
           <table>
             <tr *ngIf="dataset.owner as value">
-              <th>Owner</th>
+              <th>{{ "owner" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset['principalInvestigator'] as value">
-              <th>Principal Investigator</th>
+              <th>{{ "principal_investigator" | translate }}</th>
               <td><span [innerHTML]="value | linky"></span></td>
             </tr>
             <tr *ngIf="dataset['investigator'] as value">
