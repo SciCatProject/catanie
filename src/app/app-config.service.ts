@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { timeout } from "rxjs/operators";
 import {
+  DatasetDetailView,
   DatasetsListSettings,
   LabelMaps,
   TableColumn,
@@ -101,6 +102,7 @@ export interface AppConfig {
   labelMaps: LabelMaps;
   thumbnailFetchLimitPerPage: number;
   maxFileUploadSizeInMb?: string;
+  datasetDetailView?: DatasetDetailView;
 }
 
 @Injectable()
@@ -128,6 +130,10 @@ export class AppConfigService {
   }
 
   getConfig(): AppConfig {
+    if (!this.appConfig) {
+      console.error("AppConfigService: Configuration not loaded!");
+    }
+
     return this.appConfig as AppConfig;
   }
 }

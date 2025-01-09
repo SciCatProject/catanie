@@ -50,6 +50,7 @@ import {
   SampleClass,
 } from "@scicatproject/scicat-sdk-ts";
 import { AttachmentService } from "shared/services/attachment.service";
+import { TranslateService } from "@ngx-translate/core";
 
 /**
  * Component to show details for a data set, using the
@@ -93,12 +94,15 @@ export class DatasetDetailComponent
   constructor(
     @Inject(DOCUMENT) private document: Document,
     public appConfigService: AppConfigService,
-    private attachmentService: AttachmentService,
     public dialog: MatDialog,
+    private attachmentService: AttachmentService,
+    private translateService: TranslateService,
     private store: Store,
     private router: Router,
     private fb: FormBuilder,
-  ) {}
+  ) {
+    this.translateService.use(this.appConfig.datasetDetailView.currentLabelSet);
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
