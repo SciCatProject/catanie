@@ -30,12 +30,12 @@
           <div mat-card-avatar class="section-icon">
             <mat-icon> description </mat-icon>
           </div>
-          {{ "general_information" | translate }}
+          {{ "General Information" | translate }}
         </mat-card-header>
         <mat-card-content>
           <table>
             <tr>
-              <th>{{ "dataset_name" | translate }}</th>
+              <th>{{ "Dataset Name" | translate }}</th>
               <td *ngIf="!editEnabled">{{ dataset.datasetName || "-" }}</td>
               <td *ngIf="editEnabled && editingAllowed">
                 <mat-form-field class="full-width">
@@ -45,7 +45,7 @@
               </td>
             </tr>
             <tr>
-              <th>{{ "description" | translate }}</th>
+              <th>{{ "Description" | translate }}</th>
               <td *ngIf="!editEnabled">
                 <span [innerHTML]="dataset.description || '-' | linky"></span>
               </td>
@@ -61,7 +61,7 @@
               </td>
             </tr>
             <tr>
-              <th>{{ "pid" | translate }}</th>
+              <th>{{ "Pid" | translate }}</th>
               <td>
                 {{ dataset.pid }}
                 <button
@@ -74,15 +74,15 @@
               </td>
             </tr>
             <tr *ngIf="dataset.type as value">
-              <th>{{ "type" | translate }}</th>
+              <th>{{ "Type" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset.creationTime as value">
-              <th>{{ "creation_time" | translate }}</th>
+              <th>{{ "Creation time" | translate }}</th>
               <td>{{ value | date: "yyyy-MM-dd HH:mm" }}</td>
             </tr>
             <tr class="keywords-row">
-              <th>{{ "keywords" | translate }}</th>
+              <th>{{ "Keywords" | translate }}</th>
               <td *ngIf="!editEnabled">
                 <mat-chip-set role="list" #keywordChips>
                   <mat-chip
@@ -118,7 +118,7 @@
               </td>
             </tr>
             <tr *ngIf="dataset.sharedWith && dataset.sharedWith.length > 0">
-              <th>{{ "shared_with" | translate }}</th>
+              <th>{{ "Shared With" | translate }}</th>
               <td>
                 <mat-chip-listbox>
                   <mat-chip-option
@@ -171,37 +171,37 @@
           <div mat-card-avatar class="section-icon">
             <mat-icon> person </mat-icon>
           </div>
-          {{ "creator_information" | translate }}
+          {{ "Creator Information" | translate }}
         </mat-card-header>
 
         <mat-card-content>
           <table>
             <tr *ngIf="dataset.owner as value">
-              <th>{{ "owner" | translate }}</th>
+              <th>{{ "Owner" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset['principalInvestigator'] as value">
-              <th>{{ "principal_investigator" | translate }}</th>
+              <th>{{ "Principal Investigator" | translate }}</th>
               <td><span [innerHTML]="value | linky"></span></td>
             </tr>
             <tr *ngIf="dataset['investigator'] as value">
-              <th>Investigator</th>
+              <th>{{ "Investigator" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset.orcidOfOwner as value">
-              <th>Orcid</th>
+              <th>{{ "Orcid" | translate }}</th>
               <td><span [innerHTML]="value | linky"></span></td>
             </tr>
             <tr *ngIf="dataset.contactEmail as value">
-              <th>Contact Email</th>
+              <th>{{ "Contact Email" | translate }}</th>
               <td><span [innerHTML]="value | linky"></span></td>
             </tr>
             <tr *ngIf="dataset.ownerGroup as value">
-              <th>Owner Group</th>
+              <th>{{ "Owner Group" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset.accessGroups as value">
-              <th>Access Groups</th>
+              <th>{{ "Access Groups" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
           </table>
@@ -213,21 +213,21 @@
           <div mat-card-avatar class="section-icon">
             <mat-icon> folder </mat-icon>
           </div>
-          File Information
+          {{ "File Information" | translate }}
         </mat-card-header>
 
         <mat-card-content>
           <table>
             <tr *ngIf="dataset.sourceFolder as value">
-              <th>Source Folder</th>
+              <th>{{ "Source Folder" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset.size as value">
-              <th>Size</th>
+              <th>{{ "Size" | translate }}</th>
               <td>{{ value | filesize }}</td>
             </tr>
             <tr *ngIf="dataset['dataFormat'] as value">
-              <th>Data Format</th>
+              <th>{{ "Data Format" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
           </table>
@@ -239,13 +239,13 @@
           <div mat-card-avatar class="section-icon">
             <mat-icon> library_books </mat-icon>
           </div>
-          Related Documents
+          {{ "Related Documents" | translate }}
         </mat-card-header>
 
         <mat-card-content>
           <table>
             <tr *ngIf="dataset['proposalId'] && proposal">
-              <th>Proposal</th>
+              <th>{{ "Proposal" | translate }}</th>
               <td>
                 <a (click)="onClickProposal(proposal.proposalId)">{{
                   proposal.title
@@ -259,11 +259,11 @@
                 appConfig.datasetDetailsShowMissingProposalId
               "
             >
-              <th>Proposal Id</th>
+              <th>{{ "Proposal Id" | translate }}</th>
               <td>{{ dataset["proposalId"] }}</td>
             </tr>
             <tr *ngIf="dataset['sampleId'] && sample">
-              <th>Sample</th>
+              <th>{{ "Sample" | translate }}</th>
               <td>
                 <a (click)="onClickSample(sample.sampleId)">
                   <span>{{ sample.description }}</span>
@@ -271,7 +271,7 @@
               </td>
             </tr>
             <tr *ngIf="dataset['instrumentId'] && instrument">
-              <th>Instrument</th>
+              <th>{{ "Instrument" | translate }}</th>
               <td>
                 <a (click)="onClickInstrument(instrument.pid)">
                   {{ instrument.name }}
@@ -279,11 +279,11 @@
               </td>
             </tr>
             <tr *ngIf="dataset['creationLocation'] as value">
-              <th>Creation Location</th>
+              <th>{{ "Creation Location" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset.techniques && dataset.techniques.length > 0">
-              <th>Techniques</th>
+              <th>{{ "Techniques" | translate }}</th>
               <td>
                 <div *ngFor="let technique of dataset.techniques">
                   <span>
@@ -304,7 +304,7 @@
                 dataset['inputDatasets'] && dataset['inputDatasets'].length > 0
               "
             >
-              <th>Input Datasets</th>
+              <th>{{ "Input Datasets" | translate }}</th>
               <td>
                 <div *ngFor="let datasetPid of dataset['inputDatasets']">
                   <span>
@@ -331,21 +331,21 @@
           <div mat-card-avatar class="section-icon">
             <mat-icon> analytics </mat-icon>
           </div>
-          Derived Data
+          {{ "Derived Data" | translate }}
         </mat-card-header>
 
         <mat-card-content>
           <table>
             <tr *ngIf="dataset['usedSoftware'] as value">
-              <th>Software Used</th>
+              <th>{{ "Software Used" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
             <tr *ngIf="dataset['jobParameters'] as value">
-              <th>Job Parameters</th>
+              <th>{{ "Job Parameters" | translate }}</th>
               <td>{{ value | json }}</td>
             </tr>
             <tr *ngIf="dataset['jobLogData'] as value">
-              <th>Job Log Data</th>
+              <th>{{ "Job Log Data" | translate }}</th>
               <td>{{ value }}</td>
             </tr>
           </table>
@@ -357,7 +357,7 @@
           <div mat-card-avatar class="section-icon">
             <mat-icon> science </mat-icon>
           </div>
-          Scientific Metadata
+          {{ "Scientific Metadata" | translate }}
         </mat-card-header>
         <mat-card-content>
           <ng-template
@@ -425,7 +425,7 @@
       <mat-card *ngIf="editingAllowed && appConfig.jsonMetadataEnabled">
         <mat-card-content>
           <button mat-stroked-button (click)="show = !show">
-            {{ show ? "Hide MetaData" : "Show Metadata" }}
+            {{ (show ? "Hide Metadata" : "Show Metadata") | translate }}
           </button>
 
           <br />
