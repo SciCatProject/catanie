@@ -28,6 +28,8 @@ import { SnackbarInterceptor } from "shared/interceptors/snackbar.interceptor";
 import { AuthService } from "shared/services/auth/auth.service";
 import { InternalStorage, SDKStorage } from "shared/services/auth/base.storage";
 import { CookieService } from "ngx-cookie-service";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { CustomTranslateLoader } from "shared/loaders/custom-translate.loader";
 
 const appConfigInitializerFn = (appConfig: AppConfigService) => {
   return () => appConfig.loadAppConfig();
@@ -51,6 +53,13 @@ const apiConfigurationFn = (
   imports: [
     AppConfigModule,
     AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: CustomTranslateLoader,
+        deps: [AppConfigService],
+      },
+    }),
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
