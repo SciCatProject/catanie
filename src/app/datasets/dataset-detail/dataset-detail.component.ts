@@ -101,7 +101,9 @@ export class DatasetDetailComponent
     private router: Router,
     private fb: FormBuilder,
   ) {
-    this.translateService.use(this.appConfig.datasetDetailView.currentLabelSet);
+    this.translateService.use(
+      this.appConfig.datasetDetailView?.currentLabelSet,
+    );
   }
 
   ngOnInit() {
