@@ -208,11 +208,6 @@ export const reduceDatasetCompleteAction = createAction(
 export const reduceDatasetFailedAction = createAction(
   "[Dataset] Reduce Dataset Failed",
 );
-
-export const appendToDatasetArrayFieldAction = createAction(
-  "[Dataset] Append To Array Field",
-  props<{ pid: string; fieldName: string; data: any[] }>(),
-);
 export const appendToDatasetArrayFieldCompleteAction = createAction(
   "[Dataset] Append To Array Field Complete",
 );

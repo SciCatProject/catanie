@@ -367,22 +367,6 @@ export class DatasetEffects {
     );
   });
 
-  appendToArrayField$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(fromActions.appendToDatasetArrayFieldAction),
-      mergeMap(({ pid, fieldName, data }) =>
-        this.datasetsService
-          .datasetsControllerAppendToArrayField(pid, fieldName, data)
-          .pipe(
-            map(() => fromActions.appendToDatasetArrayFieldCompleteAction()),
-            catchError(() =>
-              of(fromActions.appendToDatasetArrayFieldFailedAction()),
-            ),
-          ),
-      ),
-    );
-  });
-
   loading$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(
